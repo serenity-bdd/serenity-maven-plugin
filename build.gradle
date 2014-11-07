@@ -4,9 +4,6 @@ buildscript {
     repositories {
         mavenLocal()
         jcenter()
-        maven() {
-            url "http://dl.bintray.com/serenity/maven/"
-        }
     }
 }
 
@@ -23,6 +20,9 @@ targetCompatibility = 1.7
 repositories {
     mavenLocal()
     jcenter()
+    maven() {
+        url "http://dl.bintray.com/serenity/maven/"
+    }
 }
 
 ext {
