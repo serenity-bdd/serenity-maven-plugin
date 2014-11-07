@@ -166,8 +166,6 @@ uploadArchives {
     }
 }
 
-uploadArchives.doLast tagNewVersion
-
 tasks.withType(JavaCompile) {
     options.compilerArgs << "-Xlint:-options"
 }
