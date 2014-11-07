@@ -2,13 +2,8 @@ import net.serenitybdd.builds.ProjectVersionCounter
 
 buildscript {
     repositories {
+        mavenLocal()
         jcenter()
-        maven {
-            url 'https://geonet.artifactoryonline.com/geonet/public-releases'
-        }
-    }
-    dependencies {
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:0.6'
     }
 }
 
@@ -18,8 +13,6 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'maven'
 apply plugin: 'maven-publish'
-apply plugin: 'com.jfrog.bintray'
-
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
@@ -40,6 +33,7 @@ ext {
     versionCounter = new ProjectVersionCounter(isRelease: project.hasProperty("releaseBuild"))
 }
 
+name = 'serenity-maven-plugin'
 group = 'net.serenity-bdd.maven.plugins'
 version = versionCounter.currentVersion
 
@@ -128,77 +122,48 @@ artifacts {
     archives sourcesJar, javadocJar
 }
 
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-
-            println "Publishing $project.name:$project.group:$project.version"
-
-            from components.java
-
-            artifact sourcesJar {
-                classifier "sources"
-            }
-
-            artifact javadocJar {
-                classifier "javadoc"
-            }
-
-            pom.withXml {
-                asNode().children().last() + {
-                    resolveStrategy = Closure.DELEGATE_FIRST
-                    name 'serenity-maven-plugin'
-                    description 'Serenity Maven Plugin'
-                    packaging 'maven-plugin'
-
-                    url 'https://github.com/serenity-bdd/serenity-core'
-                    scm {
-                        url 'scm:git:git@github.com:serenity-bdd/serenity-maven-plugin.git'
-                        connection 'scm:git:git@github.com:serenity-bdd/serenity-maven-plugin.git'
-                        developerConnection 'scm:git:git@github.com:serenity-bdd/serenity-maven-plugin.git'
-                    }
-                    licenses {
-                        license {
-                            name 'The Apache Software License, Version 2.0'
-                            url 'http://www.apache.org/license/LICENSE-2.0.txt'
-                            distribution 'repo'
-                        }
-                    }
-                    developers {
-                        developer {
-                            id 'johnsmart'
-                            name 'John Ferguson Smart'
-                            email 'john.smart@wakaleo.com'
-                        }
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            pom.artifactId = 'serenity-maven-plugin'
+            pom.project {
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        distribution 'repo'
                     }
                 }
-                // Preserve compile-scope dependencies
-                asNode().dependencies.'*'.findAll() {
-                    it.scope.text() == 'runtime' && project.configurations.compile.allDependencies.find { dep ->
-                        dep.name == it.artifactId.text()
-                    }
-                }.each() {
-                    it.scope*.value = 'compile'
+                url 'https://github.com/serenity-bdd/$project.name'
+                scm {
+                    url 'scm:git:git@github.com:serenity-bdd/$project.name.git'
+                    connection 'scm:git:git@github.com:serenity-bdd/$project.name.git'
+                    developerConnection 'scm:git:git@github.com:serenity-bdd/$project.name.git'
                 }
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/license/LICENSE-2.0.txt'
+                        distribution 'repo'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'johnsmart'
+                        name 'John Ferguson Smart'
+                        email 'john.smart@wakaleo.com'
+                    }
+                }
+            }
+            repository(url: bintrayBaseUrl + '/serenity/maven/serenity-maven-plugin') {
+                authentication(userName: bintrayUsername, password: bintrayApiKey)
             }
         }
     }
 }
 
+uploadArchives.doLast tagNewVersion
+
 tasks.withType(JavaCompile) {
     options.compilerArgs << "-Xlint:-options"
-}
-
-bintray {
-    user = bintrayUsername //this usually comes form gradle.properties file in ~/.gradle
-    key = bintrayApiKey //this usually comes form gradle.properties file in ~/.gradle
-    publications = ['mavenJava'] // see publications closure
-    pkg {
-        repo = 'maven'
-        userOrg = 'serenity'
-        name = 'serenity-maven-plugin'
-        desc = 'Serenity core libraries'
-        licenses = ['Apache-2.0']
-        labels = ['serenity','bdd']
-    }
 }
