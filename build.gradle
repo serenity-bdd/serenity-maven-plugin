@@ -43,6 +43,21 @@ ext {
 group = 'net.serenity-bdd.maven.plugins'
 version = versionCounter.currentVersion
 
+
+task createNewVersionTag(type: Exec) {
+    executable "sh"
+    args "-c", "git tag -f -a v$version -m'release tag'"
+}
+
+task pushVersionTag(type: Exec, dependsOn: 'createNewVersionTag') {
+    executable "sh"
+    args "-c", "git push -f origin v$version"
+}
+
+task tagNewVersion() {
+    dependsOn pushVersionTag
+}
+
 task wrapper(type: Wrapper) {
     gradleVersion = '2.1'
 }
