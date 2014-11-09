@@ -12,7 +12,7 @@ apply plugin: 'groovy'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'maven'
-apply plugin: 'maven-publish'
+//apply plugin: 'maven-publish'
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
@@ -42,7 +42,7 @@ ext {
 }
 
 group = 'net.serenity-bdd.maven.plugins'
-version = versionCounter.currentVersion
+version = versionCounter.nextVersion
 
 
 task createNewVersionTag(type: Exec) {
@@ -64,7 +64,7 @@ task wrapper(type: Wrapper) {
 }
 
 dependencies {
-    compile "net.serenity-bdd:core:${serenityCoreVersion}"
+    compile "net.serenity-bdd:core:1.0.2"
 
     compile "org.apache.maven:maven-plugin-api:3.2.3"
     compile "org.apache.maven.reporting:maven-reporting-api:3.0"
