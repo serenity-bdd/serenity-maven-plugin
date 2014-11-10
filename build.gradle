@@ -28,10 +28,10 @@ repositories {
 ext {
     bintrayBaseUrl = 'https://api.bintray.com/maven'
     bintrayRepository = 'maven'
-    bintrayPackage = 'serenity-maven-plugin'
+    bintrayPackage = 'serenity-core'
     projectDescription = 'Serenity Maven Plugin'
 
-    serenityCoreVersion = '1.0.2'
+    serenityCoreVersion = '1.0.3'
     if (!project.hasProperty("bintrayUsername")) {
         bintrayUsername = 'wakaleo'
     }
