@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>net.serenity-bdd.maven.plugins</groupId>
   <artifactId>serenity-maven-plugin</artifactId>
-  <version>1.0.4</version>
+  <version>1.0.4-SNAPSHOT</version>
   <packaging>maven-plugin</packaging>
   <build>
     <directory>${project.basedir}/build</directory>
@@ -44,7 +44,7 @@
     <dependency>
       <groupId>net.serenity-bdd</groupId>
       <artifactId>core</artifactId>
-      <version>1.0.3</version>
+      <version>1.0.4</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
