@@ -4,55 +4,13 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>net.serenity-bdd.maven.plugins</groupId>
   <artifactId>serenity-maven-plugin</artifactId>
-  <version>1.0.3-SNAPSHOT</version>
+  <version>1.0.4</version>
   <packaging>maven-plugin</packaging>
   <build>
     <directory>${project.basedir}/build</directory>
     <outputDirectory>${project.build.directory}/classes/main</outputDirectory>
   </build>
   <dependencies>
-    <dependency>
-      <groupId>org.apache.maven.plugin-tools</groupId>
-      <artifactId>maven-plugin-annotations</artifactId>
-      <version>3.3</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.spockframework</groupId>
-      <artifactId>spock-core</artifactId>
-      <version>0.7-groovy-2.0</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-classic</artifactId>
-      <version>1.0.13</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.github.goldin</groupId>
-      <artifactId>spock-extensions</artifactId>
-      <version>0.1.4</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.easytesting</groupId>
-      <artifactId>fest-assert</artifactId>
-      <version>1.4</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>net.serenity-bdd</groupId>
-      <artifactId>core</artifactId>
-      <version>1.0.2</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.maven</groupId>
-      <artifactId>maven-plugin-api</artifactId>
-      <version>3.2.3</version>
-      <scope>compile</scope>
-    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -66,15 +24,57 @@
       <scope>test</scope>
     </dependency>
     <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-plugin-api</artifactId>
+      <version>3.2.3</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
       <groupId>org.codehaus.groovy</groupId>
       <artifactId>groovy-all</artifactId>
       <version>2.3.3</version>
       <scope>test</scope>
     </dependency>
     <dependency>
+      <groupId>com.github.goldin</groupId>
+      <artifactId>spock-extensions</artifactId>
+      <version>0.1.4</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>net.serenity-bdd</groupId>
+      <artifactId>core</artifactId>
+      <version>1.0.3</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-core</artifactId>
       <version>3.0.4</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.spockframework</groupId>
+      <artifactId>spock-core</artifactId>
+      <version>0.7-groovy-2.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.easytesting</groupId>
+      <artifactId>fest-assert</artifactId>
+      <version>1.4</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.0.13</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.plugin-tools</groupId>
+      <artifactId>maven-plugin-annotations</artifactId>
+      <version>3.3</version>
       <scope>compile</scope>
     </dependency>
     <dependency>

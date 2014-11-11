@@ -12,7 +12,7 @@ apply plugin: 'groovy'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'maven'
-//apply plugin: 'maven-publish'
+apply plugin: 'maven-publish'
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
@@ -31,7 +31,7 @@ ext {
     bintrayPackage = 'serenity-core'
     projectDescription = 'Serenity Maven Plugin'
 
-    serenityCoreVersion = '1.0.3'
+    serenityCoreVersion = '1.0.4'
     if (!project.hasProperty("bintrayUsername")) {
         bintrayUsername = 'wakaleo'
     }
@@ -64,7 +64,7 @@ task wrapper(type: Wrapper) {
 }
 
 dependencies {
-    compile "net.serenity-bdd:core:1.0.2"
+    compile "net.serenity-bdd:core:1.0.3"
 
     compile "org.apache.maven:maven-plugin-api:3.2.3"
     compile "org.apache.maven.reporting:maven-reporting-api:3.0"
@@ -125,8 +125,74 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
     from javadoc.destinationDir
 }
 
+jar {
+    println "Publishing $project.name:$project.group:$project.version"
+
+    manifest {
+        attributes("Implementation-Title": "Serenity Maven Plugin",
+                   "Implementation-Version": project.version.toString())
+    }
+}
+
 artifacts {
     archives sourcesJar, javadocJar
+}
+
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+
+            println "Publishing $project.name:$project.group:$project.version"
+
+            from components.java
+
+            artifact sourcesJar {
+                classifier "sources"
+            }
+
+            artifact javadocJar {
+                classifier "javadoc"
+            }
+
+            pom.withXml {
+                asNode().children().last() + {
+                    resolveStrategy = Closure.DELEGATE_FIRST
+                    name 'serenity-cucumber'
+                    description 'Serenity Cucumber Integration'
+
+                    url 'https://github.com/serenity-bdd/serenity-cucumber'
+                    scm {
+                        url 'scm:git:git@github.com:serenity-bdd/serenity-cucumber.git'
+                        connection 'scm:git:git@github.com:serenity-bdd/serenity-cucumber.git'
+                        developerConnection 'scm:git:git@github.com:serenity-bdd/serenity-cucumber.git'
+                    }
+                    licenses {
+                        license {
+                            name 'The Apache Software License, Version 2.0'
+                            url 'http://www.apache.org/license/LICENSE-2.0.txt'
+                            distribution 'repo'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id 'johnsmart'
+                            name 'John Ferguson Smart'
+                            email 'john.smart@wakaleo.com'
+                        }
+                    }
+                }
+                // Preserve compile-scope dependencies
+                asNode().dependencies.'*'.findAll() {
+                    it.scope.text() == 'runtime' && project.configurations.compile.allDependencies.find { dep ->
+                        dep.name == it.artifactId.text()
+                    }
+                }.each() {
+                    it.scope*.value = 'compile'
+                }
+            }
+        }
+    }
 }
 
 uploadArchives {
