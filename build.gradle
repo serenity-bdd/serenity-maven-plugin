@@ -88,7 +88,7 @@ dependencies {
 }
 
 task pluginDescriptor(type: Exec) {
-    commandLine 'mvn', '-e', '-B', 'org.apache.maven.plugins:maven-plugin-plugin:3.3:descriptor'
+    commandLine 'mvn', '-e', '-B', 'org.apache.maven.plugins:maven-plugin-plugin:3.3:descriptor','-s','config/settings.xml'
     doFirst {
         final File pom = project.file('pom.xml')
         install.repositories.mavenInstaller.pom.writeTo(pom)
