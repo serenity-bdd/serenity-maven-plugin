@@ -31,7 +31,7 @@ ext {
     bintrayPackage = 'serenity-core'
     projectDescription = 'Serenity Maven Plugin'
 
-    serenityCoreVersion = '1.0.4'
+    serenityCoreVersion = '1.0.5'
     if (!project.hasProperty("bintrayUsername")) {
         bintrayUsername = 'wakaleo'
     }
@@ -64,7 +64,7 @@ task wrapper(type: Wrapper) {
 }
 
 dependencies {
-    compile "net.serenity-bdd:core:1.0.4"
+    compile "net.serenity-bdd:core:${serenityCoreVersion}"
 
     compile "org.apache.maven:maven-plugin-api:3.2.3"
     compile "org.apache.maven.reporting:maven-reporting-api:3.0"
@@ -158,14 +158,14 @@ publishing {
             pom.withXml {
                 asNode().children().last() + {
                     resolveStrategy = Closure.DELEGATE_FIRST
-                    name 'serenity-cucumber'
-                    description 'Serenity Cucumber Integration'
+                    name 'serenity-maven-plugin'
+                    description 'Serenity Maven Plugin'
 
-                    url 'https://github.com/serenity-bdd/serenity-cucumber'
+                    url 'https://github.com/serenity-bdd/serenity-maven-plugin'
                     scm {
-                        url 'scm:git:git@github.com:serenity-bdd/serenity-cucumber.git'
-                        connection 'scm:git:git@github.com:serenity-bdd/serenity-cucumber.git'
-                        developerConnection 'scm:git:git@github.com:serenity-bdd/serenity-cucumber.git'
+                        url 'scm:git:git@github.com:serenity-bdd/serenity-maven-plugin.git'
+                        connection 'scm:git:git@github.com:serenity-bdd/serenity-maven-plugin.git'
+                        developerConnection 'scm:git:git@github.com:serenity-bdd/serenity-maven-plugin.git'
                     }
                     licenses {
                         license {
