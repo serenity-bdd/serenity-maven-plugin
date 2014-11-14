@@ -228,7 +228,7 @@ uploadArchives {
                     }
                 }
             }
-            repository(url: bintrayBaseUrl + '/serenity/maven/serenity-maven-plugin') {
+            repository(url: bintrayBaseUrl + '/serenity/maven/serenity-core') {
                 authentication(userName: bintrayUsername, password: bintrayApiKey)
             }
         }
