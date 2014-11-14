@@ -199,6 +199,8 @@ uploadArchives {
     repositories {
         mavenDeployer {
             pom.artifactId = 'serenity-maven-plugin'
+            pom.name = project.name
+            pom.description = projectDescription
             pom.project {
                 licenses {
                     license {
