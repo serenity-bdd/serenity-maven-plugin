@@ -1,10 +1,22 @@
-import net.serenitybdd.builds.ProjectVersionCounter
+import org.ajoberstar.grgit.*
+import org.ajoberstar.gradle.git.release.opinion.Strategies
 
 buildscript {
     repositories {
         mavenLocal()
         jcenter()
     }
+    dependencies {
+        classpath 'org.ajoberstar:gradle-git:0.12.0'
+    }
+}
+
+apply plugin: 'org.ajoberstar.release-base'
+release {
+    grgit = Grgit.open(project.file('.'))
+    versionStrategy Strategies.FINAL
+    versionStrategy Strategies.PRE_RELEASE
+    defaultVersionStrategy Strategies.SNAPSHOT
 }
 
 apply plugin: 'java'
@@ -38,26 +50,9 @@ ext {
     if (!project.hasProperty("bintrayApiKey")) {
         bintrayApiKey = ''
     }
-    versionCounter = new ProjectVersionCounter(isRelease: project.hasProperty("releaseBuild"))
 }
 
 group = 'net.serenity-bdd.maven.plugins'
-version = versionCounter.nextVersion
-
-
-task createNewVersionTag(type: Exec) {
-    executable "sh"
-    args "-c", "git tag -f -a v$version -m'release tag'"
-}
-
-task pushVersionTag(type: Exec, dependsOn: 'createNewVersionTag') {
-    executable "sh"
-    args "-c", "git push -f origin v$version"
-}
-
-task tagNewVersion() {
-    dependsOn pushVersionTag
-}
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.1'
