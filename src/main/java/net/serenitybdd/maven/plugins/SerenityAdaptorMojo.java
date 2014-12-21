@@ -1,4 +1,4 @@
-package net.thucydides.maven.plugins;
+package net.serenitybdd.maven.plugins;
 
 import net.thucydides.core.guice.Injectors;
 import net.thucydides.core.reports.TestOutcomeAdaptorReporter;
@@ -8,22 +8,21 @@ import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugins.annotations.Mojo;
-import  org.apache.maven.plugins.annotations.Parameter;
-import org.springframework.beans.factory.annotation.Required;
+import org.apache.maven.plugins.annotations.Parameter;
 
 import java.io.File;
 import java.io.IOException;
 
 /**
- * This plugin generates converts external (e.g. xUnit) files into Thucydides reports.
+ * This plugin generates converts external (e.g. xUnit) files into Serenity reports.
  */
 @Mojo( name = "import", requiresProject=false)
-public class ThucydidesAdaptorMojo extends AbstractMojo {
+public class SerenityAdaptorMojo extends AbstractMojo {
 
     /**
      * Aggregate reports are generated here
      */
-    @Parameter(property = "import.target", defaultValue = "target/site/thucydides", required=true)
+    @Parameter(property = "import.target", defaultValue = "target/site/serenity", required=true)
     public File outputDirectory;
 
     /**
@@ -44,12 +43,12 @@ public class ThucydidesAdaptorMojo extends AbstractMojo {
     private final AdaptorService adaptorService;
     private final TestOutcomeAdaptorReporter reporter = new TestOutcomeAdaptorReporter();
 
-    public ThucydidesAdaptorMojo(EnvironmentVariables environmentVariables) {
+    public SerenityAdaptorMojo(EnvironmentVariables environmentVariables) {
         this.environmentVariables = environmentVariables;
         this.adaptorService = new AdaptorService(environmentVariables);
     }
 
-    public ThucydidesAdaptorMojo() {
+    public SerenityAdaptorMojo() {
         this(Injectors.getInjector().getProvider(EnvironmentVariables.class).get() );
     }
 

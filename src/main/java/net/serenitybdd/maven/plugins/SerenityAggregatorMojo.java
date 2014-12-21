@@ -1,6 +1,6 @@
-package net.thucydides.maven.plugins;
+package net.serenitybdd.maven.plugins;
 
-import net.thucydides.core.Thucydides;
+import net.serenity_bdd.core.Serenity;
 import net.thucydides.core.ThucydidesSystemProperty;
 import net.thucydides.core.guice.Injectors;
 import net.thucydides.core.reports.html.HtmlAggregateStoryReporter;
@@ -19,18 +19,18 @@ import java.util.Locale;
 x *
  */
 @Mojo(name = "aggregate", requiresProject = false)
-public class ThucydidesAggregatorMojo extends AbstractMojo {
+public class SerenityAggregatorMojo extends AbstractMojo {
 
     /**
      * Aggregate reports are generated here
      */
-    @Parameter(property = "thucydides.outputDirectory", defaultValue = "${project.build.directory}/site/thucydides", required=true)
+    @Parameter(property = "thucydides.outputDirectory", defaultValue = "${project.build.directory}/site/serenity", required=true)
     public File outputDirectory;
 
     /**
-     * Thucydides test reports are read from here
+     * Serenity test reports are read from here
      */
-    @Parameter(property = "thucydides.source", defaultValue = "${project.build.directory}/site/thucydides", required=true)
+    @Parameter(property = "thucydides.source", defaultValue = "${project.build.directory}/site/serenity", required=true)
     public File sourceDirectory;
 
     /**
@@ -67,7 +67,7 @@ public class ThucydidesAggregatorMojo extends AbstractMojo {
     EnvironmentVariables environmentVariables;
 
     /**
-     * Thucydides project key
+     * Serenity project key
      */
     @Parameter(property = "thucydides.project.key", defaultValue = "default")
     public String projectKey;
@@ -96,7 +96,7 @@ public class ThucydidesAggregatorMojo extends AbstractMojo {
 
     private void configureEnvironmentVariables() {
         Locale.setDefault(Locale.ENGLISH);
-        updateSystemProperty(ThucydidesSystemProperty.THUCYDIDES_PROJECT_KEY.getPropertyName(), projectKey, Thucydides.getDefaultProjectKey());
+        updateSystemProperty(ThucydidesSystemProperty.THUCYDIDES_PROJECT_KEY.getPropertyName(), projectKey, Serenity.getDefaultProjectKey());
         updateSystemProperty(ThucydidesSystemProperty.THUCYDIDES_TEST_REQUIREMENTS_BASEDIR.toString(),
                              requirementsBaseDir);
     }
@@ -127,7 +127,7 @@ public class ThucydidesAggregatorMojo extends AbstractMojo {
         try {
             generateHtmlStoryReports();
         } catch (IOException e) {
-            throw new MojoExecutionException("Error generating aggregate thucydides reports", e);
+            throw new MojoExecutionException("Error generating aggregate serenity reports", e);
         }
     }
 

@@ -1,4 +1,4 @@
-package net.thucydides.maven.plugins;
+package net.serenitybdd.maven.plugins;
 
 import net.thucydides.core.util.EnvironmentVariables;
 import net.thucydides.core.util.MockEnvironmentVariables;
@@ -18,7 +18,7 @@ import static org.fest.assertions.Assertions.assertThat;
 
 public class WhenImportingExternalTestResults {
 
-    ThucydidesAdaptorMojo plugin;
+    SerenityAdaptorMojo plugin;
 
     @Rule
     public TemporaryFolder temporaryFolder = new TemporaryFolder();
@@ -30,7 +30,7 @@ public class WhenImportingExternalTestResults {
 
         outputDirectory = temporaryFolder.newFolder("sample-output");
 
-        plugin = new ThucydidesAdaptorMojo();
+        plugin = new SerenityAdaptorMojo();
         plugin.setOutputDirectory(outputDirectory);
     }
 
@@ -48,9 +48,9 @@ public class WhenImportingExternalTestResults {
     public void source_should_not_be_mandatory() throws MojoFailureException, MojoExecutionException, IOException {
 
         EnvironmentVariables environmentVariables = new MockEnvironmentVariables();
-        environmentVariables.setProperty("thucydides.adaptors.fileless","net.thucydides.maven.plugins.FilelessAdaptor");
+        environmentVariables.setProperty("thucydides.adaptors.fileless","net.serenitybdd.maven.plugins.FilelessAdaptor");
 
-        ThucydidesAdaptorMojo plugin = new ThucydidesAdaptorMojo(environmentVariables);
+        SerenityAdaptorMojo plugin = new SerenityAdaptorMojo(environmentVariables);
         plugin.setFormat("fileless");
         plugin.setOutputDirectory(outputDirectory);
 

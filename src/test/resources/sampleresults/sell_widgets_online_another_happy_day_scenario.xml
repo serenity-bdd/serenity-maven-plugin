@@ -1,6 +1,6 @@
 <acceptance-test-run title="Another happy day scenario" name="another_happy_day_scenario" steps="6" successful="6" failures="0" skipped="0" ignored="0" pending="0" result="SUCCESS">
-  <user-story id="net.thucydides.samples.Application.SellWidgets.SellWidgetsOnline" name="Sell widgets online">
-    <feature id="net.thucydides.samples.Application.SellWidgets" name="Sell widgets"/>
+  <user-story id="net.serenitybdd.samples.Application.SellWidgets.SellWidgetsOnline" name="Sell widgets online">
+    <feature id="net.serenitybdd.samples.Application.SellWidgets" name="Sell widgets"/>
   </user-story>
   <test-step result="SUCCESS">
     <description>Step that succeeds</description>
