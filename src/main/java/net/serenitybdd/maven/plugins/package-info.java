@@ -1,4 +1,4 @@
 /**
- * The implementation of the Thucydides Maven plugin.
+ * The implementation of the Serenity Maven plugin.
  */
 package net.serenitybdd.maven.plugins;

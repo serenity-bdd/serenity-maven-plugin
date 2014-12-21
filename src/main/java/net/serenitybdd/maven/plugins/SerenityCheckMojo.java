@@ -11,17 +11,17 @@ import org.apache.maven.project.MavenProject;
 import java.io.File;
 
 /**
- * This plugin deletes existing history files for Thucydides for this project.
+ * This plugin deletes existing history files for Serenity for this project.
  */
 @Mojo(name = "check")
-public class ThucydidesCheckMojo extends AbstractMojo {
+public class SerenityCheckMojo extends AbstractMojo {
     @Parameter(readonly = true,required=true)
     protected MavenProject project;
 
     /**
      * Aggregate reports are generated here
      */
-    @Parameter(property = "outputDirectory", defaultValue = "${project.build.directory}/site/thucydides", required=true)
+    @Parameter(property = "outputDirectory", defaultValue = "${project.build.directory}/site/serenity", required=true)
     public File outputDirectory;
 
     protected ResultChecker getResultChecker() {
@@ -29,7 +29,7 @@ public class ThucydidesCheckMojo extends AbstractMojo {
     }
 
     public void execute() throws MojoExecutionException, MojoFailureException {
-        getLog().info("Checking Thucydides test results");
+        getLog().info("Checking Serenity test results");
         getResultChecker().checkTestResults();
     }
 }

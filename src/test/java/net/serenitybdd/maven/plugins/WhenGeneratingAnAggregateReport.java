@@ -20,7 +20,7 @@ import static org.mockito.Mockito.when;
 
 public class WhenGeneratingAnAggregateReport {
 
-    ThucydidesAggregatorMojo plugin;
+    SerenityAggregatorMojo plugin;
 
     @Mock
     File outputDirectory;
@@ -40,7 +40,7 @@ public class WhenGeneratingAnAggregateReport {
 
         MockitoAnnotations.initMocks(this);
 
-        plugin = new ThucydidesAggregatorMojo();
+        plugin = new SerenityAggregatorMojo();
         plugin.setOutputDirectory(outputDirectory);
         plugin.setSourceDirectory(sourceDirectory);
         plugin.setReporter(reporter);

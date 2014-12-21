@@ -10,7 +10,7 @@ import static org.mockito.Mockito.verify;
 
 public class WhenCheckingTheMavenTestResults {
 
-    ThucydidesCheckMojo plugin;
+    SerenityCheckMojo plugin;
 
     @Mock
     ResultChecker resultChecker;
@@ -23,7 +23,7 @@ public class WhenCheckingTheMavenTestResults {
     @Test
     public void should_report_failures_if_present() throws Exception {
 
-        plugin = new ThucydidesCheckMojo() {
+        plugin = new SerenityCheckMojo() {
             @Override
             protected ResultChecker getResultChecker() {
                 return resultChecker;
