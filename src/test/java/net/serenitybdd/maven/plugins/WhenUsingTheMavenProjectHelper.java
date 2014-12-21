@@ -1,4 +1,4 @@
-package net.thucydides.maven.plugins;
+package net.serenitybdd.maven.plugins;
 
 import org.apache.maven.project.MavenProject;
 import org.junit.Before;

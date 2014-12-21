@@ -1,4 +1,4 @@
-package net.thucydides.maven.plugins;
+package net.serenitybdd.maven.plugins;
 
 import net.thucydides.core.reports.ResultChecker;
 import org.junit.Before;

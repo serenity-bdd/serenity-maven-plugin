@@ -1,4 +1,4 @@
-package net.thucydides.maven.plugins;
+package net.serenitybdd.maven.plugins;
 
 import com.google.common.collect.Lists;
 import net.thucydides.core.model.Story;
