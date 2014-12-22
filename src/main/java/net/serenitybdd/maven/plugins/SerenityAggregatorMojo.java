@@ -1,6 +1,6 @@
 package net.serenitybdd.maven.plugins;
 
-import net.serenity_bdd.core.Serenity;
+import net.serenitybdd.core.Serenity;
 import net.thucydides.core.ThucydidesSystemProperty;
 import net.thucydides.core.guice.Injectors;
 import net.thucydides.core.reports.html.HtmlAggregateStoryReporter;
