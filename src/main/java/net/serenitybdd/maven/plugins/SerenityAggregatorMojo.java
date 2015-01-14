@@ -24,13 +24,13 @@ public class SerenityAggregatorMojo extends AbstractMojo {
     /**
      * Aggregate reports are generated here
      */
-    @Parameter(property = "thucydides.outputDirectory", defaultValue = "${project.build.directory}/site/serenity", required=true)
+    @Parameter(property = "thucydides.outputDirectory", defaultValue = "${project.build.directory}/site/thucydides", required=true)
     public File outputDirectory;
 
     /**
      * Serenity test reports are read from here
      */
-    @Parameter(property = "thucydides.source", defaultValue = "${project.build.directory}/site/serenity", required=true)
+    @Parameter(property = "thucydides.source", defaultValue = "${project.build.directory}/site/thucydides", required=true)
     public File sourceDirectory;
 
     /**
