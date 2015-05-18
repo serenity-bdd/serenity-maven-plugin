@@ -5,6 +5,7 @@ import net.thucydides.core.ThucydidesSystemProperty;
 import net.thucydides.core.guice.Injectors;
 import net.thucydides.core.reports.html.HtmlAggregateStoryReporter;
 import net.thucydides.core.util.EnvironmentVariables;
+import net.thucydides.core.webdriver.Configuration;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.Mojo;
@@ -24,13 +25,13 @@ public class SerenityAggregatorMojo extends AbstractMojo {
     /**
      * Aggregate reports are generated here
      */
-    @Parameter(property = "thucydides.outputDirectory", defaultValue = "${project.build.directory}/site/serenity", required=true)
+    @Parameter(property = "serenity.outputDirectory")
     public File outputDirectory;
 
     /**
      * Serenity test reports are read from here
      */
-    @Parameter(property = "thucydides.source", defaultValue = "${project.build.directory}/site/serenity", required=true)
+    @Parameter(property = "serenity.sourceDirectory")
     public File sourceDirectory;
 
     /**
@@ -66,6 +67,8 @@ public class SerenityAggregatorMojo extends AbstractMojo {
 
     EnvironmentVariables environmentVariables;
 
+    Configuration configuration;
+
     /**
      * Serenity project key
      */
@@ -81,10 +84,20 @@ public class SerenityAggregatorMojo extends AbstractMojo {
     }
 
     public void prepareExecution() {
+        configureOutputDirectorySettings();
         if (!outputDirectory.exists()) {
             outputDirectory.mkdirs();
         }
         configureEnvironmentVariables();
+    }
+
+    private void configureOutputDirectorySettings() {
+        if (outputDirectory == null) {
+            outputDirectory = getConfiguration().getOutputDirectory();
+        }
+        if (sourceDirectory == null) {
+            sourceDirectory = getConfiguration().getOutputDirectory();
+        }
     }
 
     private EnvironmentVariables getEnvironmentVariables() {
@@ -92,6 +105,13 @@ public class SerenityAggregatorMojo extends AbstractMojo {
             environmentVariables = Injectors.getInjector().getProvider(EnvironmentVariables.class).get() ;
         }
         return environmentVariables;
+    }
+
+    private Configuration getConfiguration() {
+        if (configuration == null) {
+            configuration = Injectors.getInjector().getProvider(Configuration.class).get() ;
+        }
+        return configuration;
     }
 
     private void configureEnvironmentVariables() {
