@@ -43,7 +43,7 @@ ext {
     bintrayPackage = 'serenity-core'
     projectDescription = 'Serenity Maven Plugin'
 
-    serenityCoreVersion = '1.0.47'
+    serenityCoreVersion = '1.0.48'
     if (!project.hasProperty("bintrayUsername")) {
         bintrayUsername = 'wakaleo'
     }
@@ -69,7 +69,7 @@ configurations.all {
 }
 
 dependencies {
-    compile "net.serenity-bdd:core:${serenityCoreVersion}"
+    compile "net.serenity-bdd:serenity-core:${serenityCoreVersion}"
     compile ("org.apache.maven:maven-core:3.2.5") {
         exclude module:"guava"
     }
