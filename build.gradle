@@ -7,16 +7,8 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'org.ajoberstar:gradle-git:0.12.0'
+        classpath 'org.ajoberstar:gradle-git:1.2.0'
     }
-}
-
-apply plugin: 'org.ajoberstar.release-base'
-release {
-    grgit = Grgit.open(project.file('.'))
-    versionStrategy Strategies.FINAL
-    versionStrategy Strategies.PRE_RELEASE
-    defaultVersionStrategy Strategies.SNAPSHOT
 }
 
 apply plugin: 'java'
@@ -25,6 +17,18 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'maven'
 apply plugin: 'maven-publish'
+apply plugin: 'org.ajoberstar.release-opinion'
+
+
+
+// release {
+//     grgit = Grgit.open(project.file('.'))
+//     versionStrategy Strategies.FINAL
+//     versionStrategy Strategies.PRE_RELEASE
+//     defaultVersionStrategy Strategies.SNAPSHOT
+// }
+
+tasks.release.dependsOn 'assemble'
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
@@ -43,7 +47,7 @@ ext {
     bintrayPackage = 'serenity-core'
     projectDescription = 'Serenity Maven Plugin'
 
-    serenityCoreVersion = '1.0.59'
+    serenityCoreVersion = '1.1.0'
     if (!project.hasProperty("bintrayUsername")) {
         bintrayUsername = 'wakaleo'
     }
@@ -55,7 +59,7 @@ ext {
 group = 'net.serenity-bdd.maven.plugins'
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.1'
+    gradleVersion = '2.5'
 }
 
 configurations.all {
@@ -92,7 +96,7 @@ dependencies {
     testCompile("com.github.goldin:spock-extensions:0.1.4") {
         exclude module: "spock-core"
     }
-    testCompile("org.codehaus.groovy:groovy-all:2.3.3")
+    testCompile("org.codehaus.groovy:groovy-all:2.3.10")
     testCompile("org.easytesting:fest-assert:1.4")
 }
 
@@ -135,11 +139,9 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 }
 
 jar {
-    println "Publishing $project.name:$project.group:$project.version"
-
     manifest {
         attributes("Implementation-Title": "Serenity Maven Plugin",
-                   "Implementation-Version": project.version.toString())
+                   "Implementation-Version": "${serenityCoreVersion}")
     }
 }
 
@@ -147,7 +149,7 @@ artifacts {
     archives sourcesJar, javadocJar
 }
 
-
+/*
 publishing {
     publications {
         mavenJava(MavenPublication) {
@@ -203,6 +205,7 @@ publishing {
         }
     }
 }
+*/
 
 uploadArchives {
     repositories {
@@ -239,7 +242,7 @@ uploadArchives {
                     }
                 }
             }
-            repository(url: bintrayBaseUrl + '/serenity/maven/serenity-core') {
+            repository(id:'', url: bintrayBaseUrl + '/serenity/maven/serenity-core') {
                 authentication(userName: bintrayUsername, password: bintrayApiKey)
             }
         }
