@@ -1,10 +1,17 @@
 package net.serenitybdd.maven.plugins;
 
+import com.beust.jcommander.internal.Lists;
+import com.beust.jcommander.internal.Maps;
+import com.google.common.base.Splitter;
+import com.typesafe.config.Config;
+import com.typesafe.config.ConfigFactory;
 import net.serenitybdd.core.Serenity;
 import net.thucydides.core.ThucydidesSystemProperty;
 import net.thucydides.core.guice.Injectors;
+import net.thucydides.core.reports.UserStoryTestReporter;
 import net.thucydides.core.reports.html.HtmlAggregateStoryReporter;
 import net.thucydides.core.util.EnvironmentVariables;
+import net.thucydides.core.util.SystemEnvironmentVariables;
 import net.thucydides.core.webdriver.Configuration;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -13,7 +20,9 @@ import org.apache.maven.plugins.annotations.Parameter;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Locale;
+import java.util.*;
+
+import static java.util.Collections.reverse;
 
 /**
  * Generate aggregate XML acceptance test reports.
@@ -146,10 +155,48 @@ public class SerenityAggregatorMojo extends AbstractMojo {
 
         try {
             generateHtmlStoryReports();
+            generateCustomReports();
         } catch (IOException e) {
             throw new MojoExecutionException("Error generating aggregate serenity reports", e);
         }
     }
+
+    private void generateCustomReports() throws IOException {
+        System.out.println("GENERATE CUSTOM REPORTS");
+        Collection<UserStoryTestReporter> customReporters = getCustomReportsFor(environmentVariables);
+        for(UserStoryTestReporter reporter : customReporters) {
+            System.out.println("GENERATE CUSTOM REPORT FOR " + reporter.getClass().getCanonicalName());
+            reporter.generateReportsForTestResultsFrom(sourceOfTestResult());
+        }
+     }
+
+    private Collection<UserStoryTestReporter> getCustomReportsFor(EnvironmentVariables environmentVariables) {
+
+        Collection<UserStoryTestReporter> reports = Lists.newArrayList();
+
+        for(String environmentVariable : environmentVariables.getKeys()) {
+            System.out.println(environmentVariable);
+            if (environmentVariable.startsWith("serenity.custom.reporters.")) {
+                String reportClass = environmentVariables.getProperty(environmentVariable);
+                try {
+                    UserStoryTestReporter reporter = (UserStoryTestReporter) Class.forName(reportClass).newInstance();
+                    //String name = lastElementOf(Splitter.on(".").splitToList(environmentVariable));
+                    reports.add(reporter);
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                } catch (InstantiationException e) {
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return reports;
+    }
+
+//    private String lastElementOf(List<String> elements) {
+//        return elements.isEmpty() ? "" : elements.get(elements.size() - 1);
+//    }
 
     protected HtmlAggregateStoryReporter getReporter() {
         if (reporter == null) {

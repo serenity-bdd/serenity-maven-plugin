@@ -9,7 +9,6 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
-import net.thucydides.core.webdriver.Configuration;
 
 import java.io.File;
 import java.io.IOException;
@@ -69,7 +68,6 @@ public class SerenityAdaptorMojo extends AbstractMojo {
         this.source = source;
     }
 
-    @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
         getLog().info("Importing external test reports");
         getLog().info("Source directory: " + source);
