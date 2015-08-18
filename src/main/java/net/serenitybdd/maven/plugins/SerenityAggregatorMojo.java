@@ -175,7 +175,6 @@ public class SerenityAggregatorMojo extends AbstractMojo {
         Collection<UserStoryTestReporter> reports = Lists.newArrayList();
 
         for(String environmentVariable : environmentVariables.getKeys()) {
-            System.out.println(environmentVariable);
             if (environmentVariable.startsWith("serenity.custom.reporters.")) {
                 String reportClass = environmentVariables.getProperty(environmentVariable);
                 try {
