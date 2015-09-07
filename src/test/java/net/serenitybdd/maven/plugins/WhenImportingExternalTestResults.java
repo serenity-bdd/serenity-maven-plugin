@@ -62,7 +62,6 @@ public class WhenImportingExternalTestResults {
     private FilenameFilter xmlFiles() {
         return new FilenameFilter() {
 
-            @Override
             public boolean accept(File file, String filename) {
                 return filename.endsWith(".xml");
             }
