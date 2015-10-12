@@ -1,17 +1,12 @@
 package net.serenitybdd.maven.plugins;
 
 import com.beust.jcommander.internal.Lists;
-import com.beust.jcommander.internal.Maps;
-import com.google.common.base.Splitter;
-import com.typesafe.config.Config;
-import com.typesafe.config.ConfigFactory;
 import net.serenitybdd.core.Serenity;
 import net.thucydides.core.ThucydidesSystemProperty;
 import net.thucydides.core.guice.Injectors;
 import net.thucydides.core.reports.UserStoryTestReporter;
 import net.thucydides.core.reports.html.HtmlAggregateStoryReporter;
 import net.thucydides.core.util.EnvironmentVariables;
-import net.thucydides.core.util.SystemEnvironmentVariables;
 import net.thucydides.core.webdriver.Configuration;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -22,11 +17,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
-import static java.util.Collections.reverse;
-
 /**
  * Generate aggregate XML acceptance test reports.
-x *
  */
 @Mojo(name = "aggregate", requiresProject = false)
 public class SerenityAggregatorMojo extends AbstractMojo {
