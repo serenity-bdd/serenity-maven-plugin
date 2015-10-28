@@ -43,7 +43,7 @@ ext {
     bintrayPackage = 'serenity-core'
     projectDescription = 'Serenity Maven Plugin'
 
-    serenityCoreVersion = '1.1.15'
+    serenityCoreVersion = '1.1.17'
     if (!project.hasProperty("bintrayUsername")) {
         bintrayUsername = 'wakaleo'
     }
@@ -61,7 +61,7 @@ task wrapper(type: Wrapper) {
 configurations.all {
     resolutionStrategy {
         // fail fast on dependency convergence problems
-        failOnVersionConflict()
+        //failOnVersionConflict()
         force  'org.codehaus.plexus:plexus-classworlds:2.5.2'
         force 'org.codehaus.plexus:plexus-utils:3.0.20'
         force 'org.slf4j:slf4j-api:1.7.7'

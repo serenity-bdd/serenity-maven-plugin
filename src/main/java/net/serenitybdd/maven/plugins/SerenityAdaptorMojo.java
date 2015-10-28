@@ -11,7 +11,6 @@ import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
 import java.io.File;
-import java.io.IOException;
 
 /**
  * This plugin generates converts external (e.g. xUnit) files into Serenity reports.
@@ -78,7 +77,7 @@ public class SerenityAdaptorMojo extends AbstractMojo {
             reporter.registerAdaptor(adaptorService.getAdaptor(format));
             reporter.setOutputDirectory(outputDirectory);
             reporter.generateReportsFrom(source);
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new MojoExecutionException(e.getMessage());
         }
     }
