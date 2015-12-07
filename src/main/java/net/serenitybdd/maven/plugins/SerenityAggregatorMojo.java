@@ -12,15 +12,17 @@ import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
+import org.apache.maven.plugins.annotations.ResolutionScope;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.Collection;
+import java.util.Locale;
 
 /**
  * Generate aggregate XML acceptance test reports.
  */
-@Mojo(name = "aggregate", requiresProject = false)
+@Mojo(name = "aggregate", requiresProject = false, requiresDependencyResolution = ResolutionScope.COMPILE)
 public class SerenityAggregatorMojo extends AbstractMojo {
 
     /**
