@@ -92,7 +92,7 @@ dependencies {
     testCompile("com.github.goldin:spock-extensions:0.1.4") {
         exclude module: "spock-core"
     }
-    testCompile("org.codehaus.groovy:groovy-all:2.3.3")
+    testCompile("org.codehaus.groovy:groovy-all:2.4.4")
     testCompile("org.easytesting:fest-assert:1.4")
 }
 
