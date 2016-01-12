@@ -43,7 +43,7 @@ ext {
     bintrayPackage = 'serenity-core'
     projectDescription = 'Serenity Maven Plugin'
 
-    serenityCoreVersion = '1.1.22-rc.15'
+    serenityCoreVersion = '1.1.24'
     if (!project.hasProperty("bintrayUsername")) {
         bintrayUsername = 'wakaleo'
     }
@@ -55,7 +55,7 @@ ext {
 group = 'net.serenity-bdd.maven.plugins'
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.1'
+    gradleVersion = '2.10'
 }
 
 configurations.all {
@@ -260,4 +260,9 @@ if (JavaVersion.current().isJava8Compatible()) {
             options.addStringOption('Xdoclint:none', '-quiet')
         }
     }
+}
+
+task copyDeps(type: Copy) {
+    from configurations.runtime
+    into project.projectDir.path + "/lib"
 }
