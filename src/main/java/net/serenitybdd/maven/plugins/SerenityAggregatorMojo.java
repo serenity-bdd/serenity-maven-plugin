@@ -80,6 +80,7 @@ public class SerenityAggregatorMojo extends AbstractMojo {
 
     protected void setOutputDirectory(final File outputDirectory) {
         this.outputDirectory = outputDirectory;
+        getConfiguration().setOutputDirectory(this.outputDirectory);
     }
 
     protected void setSourceDirectory(final File sourceDirectory) {
@@ -200,8 +201,8 @@ public class SerenityAggregatorMojo extends AbstractMojo {
     }
 
     private void generateHtmlStoryReports() throws IOException {
-        getReporter().setSourceDirectory(sourceOfTestResult());
-        getReporter().setOutputDirectory(outputDirectory);
+        getReporter().setSourceDirectory(getConfiguration().getOutputDirectory());
+        getReporter().setOutputDirectory(getConfiguration().getOutputDirectory());
         getReporter().setIssueTrackerUrl(issueTrackerUrl);
         getReporter().setJiraUrl(jiraUrl);
         getReporter().setJiraProject(jiraProject);
