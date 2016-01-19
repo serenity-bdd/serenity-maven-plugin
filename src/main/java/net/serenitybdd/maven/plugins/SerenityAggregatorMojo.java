@@ -8,14 +8,19 @@ import net.thucydides.core.reports.UserStoryTestReporter;
 import net.thucydides.core.reports.html.HtmlAggregateStoryReporter;
 import net.thucydides.core.util.EnvironmentVariables;
 import net.thucydides.core.webdriver.Configuration;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.maven.execution.MavenSession;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.plugins.annotations.ResolutionScope;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Collection;
 import java.util.Locale;
 
@@ -25,10 +30,13 @@ import java.util.Locale;
 @Mojo(name = "aggregate", requiresProject = false, requiresDependencyResolution = ResolutionScope.COMPILE)
 public class SerenityAggregatorMojo extends AbstractMojo {
 
+    private final static Logger LOGGER = LoggerFactory.getLogger(SerenityAggregatorMojo.class);
+
     /**
      * Aggregate reports are generated here
      */
     @Parameter(property = "serenity.outputDirectory")
+
     public File outputDirectory;
 
     /**
@@ -72,6 +80,9 @@ public class SerenityAggregatorMojo extends AbstractMojo {
 
     Configuration configuration;
 
+    @Parameter(defaultValue = "${session}")
+    private MavenSession session;
+
     /**
      * Serenity project key
      */
@@ -88,6 +99,7 @@ public class SerenityAggregatorMojo extends AbstractMojo {
     }
 
     public void prepareExecution() {
+        MavenProjectHelper.propagateBuildDir(session);
         configureOutputDirectorySettings();
         if (!outputDirectory.exists()) {
             outputDirectory.mkdirs();
@@ -102,6 +114,14 @@ public class SerenityAggregatorMojo extends AbstractMojo {
         if (sourceDirectory == null) {
             sourceDirectory = getConfiguration().getOutputDirectory();
         }
+        final Path projectDir = session.getCurrentProject().getBasedir().toPath();
+        LOGGER.info("current_project.base.dir: " + projectDir.toAbsolutePath().toString());
+        if (!outputDirectory.isAbsolute()) {
+            outputDirectory = projectDir.resolve(outputDirectory.toPath()).toFile();
+        }
+        if (!sourceDirectory.isAbsolute()) {
+            sourceDirectory = projectDir.resolve(sourceDirectory.toPath()).toFile();
+        }
     }
 
     private EnvironmentVariables getEnvironmentVariables() {
@@ -113,7 +133,7 @@ public class SerenityAggregatorMojo extends AbstractMojo {
 
     private Configuration getConfiguration() {
         if (configuration == null) {
-            configuration = Injectors.getInjector().getProvider(Configuration.class).get() ;
+            configuration = Injectors.getInjector().getProvider(Configuration.class).get();
         }
         return configuration;
     }
@@ -201,8 +221,8 @@ public class SerenityAggregatorMojo extends AbstractMojo {
     }
 
     private void generateHtmlStoryReports() throws IOException {
-        getReporter().setSourceDirectory(getConfiguration().getOutputDirectory());
-        getReporter().setOutputDirectory(getConfiguration().getOutputDirectory());
+        getReporter().setSourceDirectory(sourceDirectory);
+        getReporter().setOutputDirectory(outputDirectory);
         getReporter().setIssueTrackerUrl(issueTrackerUrl);
         getReporter().setJiraUrl(jiraUrl);
         getReporter().setJiraProject(jiraProject);
