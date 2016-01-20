@@ -37,6 +37,10 @@ repositories {
     }
 }
 
+test {
+    maxParallelForks = Runtime.runtime.availableProcessors()
+}
+
 ext {
     bintrayBaseUrl = 'https://api.bintray.com/maven'
     bintrayRepository = 'maven'
