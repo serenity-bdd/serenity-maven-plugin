@@ -21,7 +21,7 @@ public class SerenityAdaptorMojo extends AbstractMojo {
     /**
      * Aggregate reports are generated here
      */
-    @Parameter(property = "import.target", defaultValue = "target/site/serenity", required=true)
+    @Parameter(property = "import.target", defaultValue = "${user.dir}/target/site/serenity", required=true)
     public File outputDirectory;
 
     /**
