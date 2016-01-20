@@ -81,7 +81,7 @@ public class SerenityAggregatorMojo extends AbstractMojo {
     Configuration configuration;
 
     @Parameter(defaultValue = "${session}")
-    private MavenSession session;
+    protected MavenSession session;
 
     /**
      * Serenity project key

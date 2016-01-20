@@ -23,6 +23,7 @@ public class MavenProjectHelper {
      */
     protected static void propagateBuildDir(MavenSession session){
         if(StringUtils.isEmpty(System.getProperty("project.build.directory"))) {
+
             System.setProperty("project.build.directory", session.getCurrentProject().getBasedir().getAbsolutePath());
         }
     }
