@@ -1,11 +1,13 @@
 package net.serenitybdd.maven.plugins;
 
 import net.thucydides.core.reports.html.HtmlAggregateStoryReporter;
+import org.apache.maven.execution.MavenSession;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.project.MavenProject;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import java.io.File;
@@ -34,7 +36,6 @@ public class WhenGeneratingAnAggregateReport {
     @Mock
     MavenProject project;
 
-
     @Before
     public void setupPlugin() {
         MockitoAnnotations.initMocks(this);
@@ -43,6 +44,14 @@ public class WhenGeneratingAnAggregateReport {
         plugin.setOutputDirectory(outputDirectory);
         plugin.setSourceDirectory(sourceDirectory);
         plugin.setReporter(reporter);
+        plugin.session = Mockito.mock(MavenSession.class);
+        MavenProject project=Mockito.mock(MavenProject.class);
+        Mockito.when(project.getBasedir()).thenReturn(new File("."));
+        Mockito.when(plugin.session.getCurrentProject()).thenReturn(project);
+        Mockito.when(outputDirectory.toPath()).thenReturn(new File(".").toPath());
+        Mockito.when(sourceDirectory.toPath()).thenReturn(new File(".").toPath());
+        Mockito.when(outputDirectory.isAbsolute()).thenReturn(true);
+        Mockito.when(sourceDirectory.isAbsolute()).thenReturn(true);
     }
 
     @Test
@@ -86,12 +95,10 @@ public class WhenGeneratingAnAggregateReport {
         verify(outputDirectory,never()).mkdirs();
     }
 
-
     @Test(expected = MojoExecutionException.class)
     public void if_the_report_cant_be_written_the_plugin_execution_should_fail() throws Exception {
         doThrow(new IOException("IO error")).when(reporter).generateReportsForTestResultsFrom(outputDirectory);
 
         plugin.execute();
     }
-
 }
