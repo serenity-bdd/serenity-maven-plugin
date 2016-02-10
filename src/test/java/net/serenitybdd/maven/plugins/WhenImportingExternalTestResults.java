@@ -37,7 +37,7 @@ public class WhenImportingExternalTestResults {
     @Test
     public void should_load_data_from_specified_test_results() throws Exception {
         plugin.setFormat("xunit");
-        plugin.setSourceDirectory(getResourcesAt("/xunit-sample-output"));
+        plugin.setSource(getResourcesAt("/xunit-sample-output"));
 
         plugin.execute();
 
