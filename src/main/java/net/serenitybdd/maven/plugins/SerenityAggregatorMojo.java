@@ -221,6 +221,8 @@ public class SerenityAggregatorMojo extends AbstractMojo {
     }
 
     private void generateHtmlStoryReports() throws IOException {
+        System.out.println("Generating HTML Story Reports from "+sourceDirectory.getAbsolutePath());
+        System.out.println("Generating HTML Story Reports to "+outputDirectory.getAbsolutePath());
         getReporter().setSourceDirectory(sourceDirectory);
         getReporter().setOutputDirectory(outputDirectory);
         getReporter().setIssueTrackerUrl(issueTrackerUrl);
@@ -228,7 +230,7 @@ public class SerenityAggregatorMojo extends AbstractMojo {
         getReporter().setJiraProject(jiraProject);
         getReporter().setJiraUsername(jiraUsername);
         getReporter().setJiraPassword(jiraPassword);
-        getReporter().generateReportsForTestResultsFrom(sourceOfTestResult());
+        getReporter().generateReportsForTestResultsFrom(sourceDirectory);
     }
 
     private File sourceOfTestResult() {
