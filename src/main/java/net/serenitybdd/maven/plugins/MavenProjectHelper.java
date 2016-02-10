@@ -22,9 +22,6 @@ public class MavenProjectHelper {
      * but should from module folder, and only after that from root folder - this is fix for it.
      */
     protected static void propagateBuildDir(MavenSession session){
-        if(StringUtils.isEmpty(System.getProperty("project.build.directory"))) {
-
-            System.setProperty("project.build.directory", session.getCurrentProject().getBasedir().getAbsolutePath());
-        }
+        System.setProperty("project.build.directory", session.getCurrentProject().getBasedir().getAbsolutePath());
     }
 }
