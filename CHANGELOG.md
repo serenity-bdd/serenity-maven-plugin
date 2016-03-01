@@ -1,11 +1,12 @@
 ## Serenity BDD Maven Plugin change Log
 
+### v1.1.27-rc.1 (2016/02/29 23:40 +00:00)
+ 
+**Pull requests:**
+ 
+ 
 ### v1.1.26 (2016/02/15 23:18 +00:00)
  
- 
-**Commits:**
- 
-- [015d746](https://github.com/serenity-bdd/serenity-maven-plugin/commit/015d746b19bac4362a57f85d8791dcf3d25162b8) Updated core ([@wakaleo](https://github.com/wakaleo))
  
 ### v1.1.26-rc.4 (2016/02/15 11:55 +00:00)
  
@@ -641,13 +642,6 @@
  
 ### v1.0.17 (2014/12/13 01:03 +00:00)
  
- 
-**Commits:**
- 
-- [3447f2c](https://github.com/serenity-bdd/serenity-maven-plugin/commit/3447f2c8b5bb81cbae88cd7be71e7124214e7875) Updated core version ([@wakaleo](https://github.com/wakaleo))
- 
-### v1.0.16 (2014/12/09 02:16 +00:00)
- 
 **Pull requests:**
  
 - [#2](https://github.com/serenity-bdd/serenity-maven-plugin/pull/2) [build] Use gradle-git to manage versioning and tagging of releases ([@mikezx6r](https://github.com/mikezx6r))
@@ -661,6 +655,7 @@
 - [1709259](https://github.com/serenity-bdd/serenity-maven-plugin/commit/1709259dbd8f22ae95096ec015595997ea54b37a) Changed the target repo on BinTray ([@wakaleo](https://github.com/wakaleo))
 - [1cf9aeb](https://github.com/serenity-bdd/serenity-maven-plugin/commit/1cf9aeb88ec989b75000c3107c8d74c5ffef6d2e) Updated core dependencies to 1.0.13 ([@wakaleo](https://github.com/wakaleo))
 - [25a815d](https://github.com/serenity-bdd/serenity-maven-plugin/commit/25a815d9d549f410dd54ede51cd85bdd941a546d) Using a publicly available version of core ([@wakaleo](https://github.com/wakaleo))
+- [3447f2c](https://github.com/serenity-bdd/serenity-maven-plugin/commit/3447f2c8b5bb81cbae88cd7be71e7124214e7875) Updated core version ([@wakaleo](https://github.com/wakaleo))
 - [365dc45](https://github.com/serenity-bdd/serenity-maven-plugin/commit/365dc45fb973b49775cfb8cb6bcb085fdcb60535) Integrated git tagging ([@wakaleo](https://github.com/wakaleo))
 - [3ae48b6](https://github.com/serenity-bdd/serenity-maven-plugin/commit/3ae48b694a197a1533a9829351186b4696b8cea7) Update core version ([@wakaleo](https://github.com/wakaleo))
 - [3bf4339](https://github.com/serenity-bdd/serenity-maven-plugin/commit/3bf43394a863e942da83e38bf509d24ffa1084ca) Use code 1.0.4 ([@wakaleo](https://github.com/wakaleo))
