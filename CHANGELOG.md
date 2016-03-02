@@ -1,5 +1,13 @@
 ## Serenity BDD Maven Plugin change Log
 
+### v1.1.28 (2016/03/02 08:29 +00:00)
+ 
+ 
+### v1.1.27 (2016/03/01 07:18 +00:00)
+ 
+**Pull requests:**
+ 
+ 
 ### v1.1.27-rc.1 (2016/02/29 23:40 +00:00)
  
 **Pull requests:**
@@ -621,27 +629,6 @@
  
 ### v1.0.21 (2014/12/16 02:07 +00:00)
  
- 
-**Commits:**
- 
-- [fc0bbee](https://github.com/serenity-bdd/serenity-maven-plugin/commit/fc0bbeebaeaec6c4f16dbb65f13c735814086074) Updated dependencies ([@wakaleo](https://github.com/wakaleo))
- 
-### v1.0.20 (2014/12/16 01:41 +00:00)
- 
- 
-**Commits:**
- 
-- [83ada94](https://github.com/serenity-bdd/serenity-maven-plugin/commit/83ada94526213da94b3c0a8c68b28c062f3f7d92) Updated dependencies ([@wakaleo](https://github.com/wakaleo))
- 
-### v1.0.19 (2014/12/16 01:26 +00:00)
- 
- 
-**Commits:**
- 
-- [23ada8b](https://github.com/serenity-bdd/serenity-maven-plugin/commit/23ada8bc33d4f701a7959cece0f26ee47ded21f3) Updated dependencies ([@wakaleo](https://github.com/wakaleo))
- 
-### v1.0.17 (2014/12/13 01:03 +00:00)
- 
 **Pull requests:**
  
 - [#2](https://github.com/serenity-bdd/serenity-maven-plugin/pull/2) [build] Use gradle-git to manage versioning and tagging of releases ([@mikezx6r](https://github.com/mikezx6r))
@@ -654,6 +641,7 @@
 - [14a4c9d](https://github.com/serenity-bdd/serenity-maven-plugin/commit/14a4c9d34d4e86407f06c5b7baf1eedce79b8751) Prepared new release ([@wakaleo](https://github.com/wakaleo))
 - [1709259](https://github.com/serenity-bdd/serenity-maven-plugin/commit/1709259dbd8f22ae95096ec015595997ea54b37a) Changed the target repo on BinTray ([@wakaleo](https://github.com/wakaleo))
 - [1cf9aeb](https://github.com/serenity-bdd/serenity-maven-plugin/commit/1cf9aeb88ec989b75000c3107c8d74c5ffef6d2e) Updated core dependencies to 1.0.13 ([@wakaleo](https://github.com/wakaleo))
+- [23ada8b](https://github.com/serenity-bdd/serenity-maven-plugin/commit/23ada8bc33d4f701a7959cece0f26ee47ded21f3) Updated dependencies ([@wakaleo](https://github.com/wakaleo))
 - [25a815d](https://github.com/serenity-bdd/serenity-maven-plugin/commit/25a815d9d549f410dd54ede51cd85bdd941a546d) Using a publicly available version of core ([@wakaleo](https://github.com/wakaleo))
 - [3447f2c](https://github.com/serenity-bdd/serenity-maven-plugin/commit/3447f2c8b5bb81cbae88cd7be71e7124214e7875) Updated core version ([@wakaleo](https://github.com/wakaleo))
 - [365dc45](https://github.com/serenity-bdd/serenity-maven-plugin/commit/365dc45fb973b49775cfb8cb6bcb085fdcb60535) Integrated git tagging ([@wakaleo](https://github.com/wakaleo))
@@ -663,6 +651,7 @@
 - [4c4f860](https://github.com/serenity-bdd/serenity-maven-plugin/commit/4c4f8606c403991d60d9e4915bdcc43e63d66821) Updated to the latest core version ([@wakaleo](https://github.com/wakaleo))
 - [54c3a3f](https://github.com/serenity-bdd/serenity-maven-plugin/commit/54c3a3fa067a0e303d57bea7a5cac18205301dd1) Updated core to 1.0.15 ([@wakaleo](https://github.com/wakaleo))
 - [7463e51](https://github.com/serenity-bdd/serenity-maven-plugin/commit/7463e51aa861af19cd1499150f026b4c6ef1f74b) Maven and Gradle builds ([@wakaleo](https://github.com/wakaleo))
+- [83ada94](https://github.com/serenity-bdd/serenity-maven-plugin/commit/83ada94526213da94b3c0a8c68b28c062f3f7d92) Updated dependencies ([@wakaleo](https://github.com/wakaleo))
 - [8bdfd90](https://github.com/serenity-bdd/serenity-maven-plugin/commit/8bdfd909d1396dc6031970435189731cf80c7541) Adjusting dependency configuration ([@wakaleo](https://github.com/wakaleo))
 - [923d142](https://github.com/serenity-bdd/serenity-maven-plugin/commit/923d1428948946ca0843effd4d88fdb094ab06d5) Updated dependencies ([@wakaleo](https://github.com/wakaleo))
 - [94de94a](https://github.com/serenity-bdd/serenity-maven-plugin/commit/94de94a56820662fb9d898f342c374cae4f06808) Updated to Serenity 1.0.16 ([@wakaleo](https://github.com/wakaleo))
@@ -680,4 +669,5 @@
 - [f33e79d](https://github.com/serenity-bdd/serenity-maven-plugin/commit/f33e79d8bbf1fe10c40fd3678df26dd86bace327) Fixed issue #1 - a dependency conflict prevented the reports from being generated correctly. ([@wakaleo](https://github.com/wakaleo))
 - [f3f8323](https://github.com/serenity-bdd/serenity-maven-plugin/commit/f3f8323282be6b55a68ed17d6e45a1005a701cef) Added the serenity repo (temporary measure) ([@wakaleo](https://github.com/wakaleo))
 - [f91598c](https://github.com/serenity-bdd/serenity-maven-plugin/commit/f91598ca466ca0eecfe0db4638e6d71bcb2b2645) Maven and Gradle builds ([@wakaleo](https://github.com/wakaleo))
+- [fc0bbee](https://github.com/serenity-bdd/serenity-maven-plugin/commit/fc0bbeebaeaec6c4f16dbb65f13c735814086074) Updated dependencies ([@wakaleo](https://github.com/wakaleo))
  
