@@ -1,5 +1,20 @@
 ## Serenity BDD Maven Plugin change Log
 
+### upcoming (2016/03/04 15:25 +00:00)
+ 
+**Pull requests:**
+ 
+- [#34](https://github.com/serenity-bdd/serenity-maven-plugin/pull/34) Updated core to 1.1.29-rc.1 ([@YamStranger](https://github.com/YamStranger))
+ 
+**Commits:**
+ 
+- [d32e2b7](https://github.com/serenity-bdd/serenity-maven-plugin/commit/d32e2b7f4447c2a908dac76787af113b8cc4ed0c) chore: core updated to v1.1.29-rc.1 ([@YamStranger](https://github.com/YamStranger))
+ 
+### v1.1.29-rc.1 (2016/03/02 19:07 +00:00)
+ 
+**Pull requests:**
+ 
+ 
 ### v1.1.28 (2016/03/02 08:29 +00:00)
  
  
@@ -620,22 +635,12 @@
  
 - [#4](https://github.com/serenity-bdd/serenity-maven-plugin/pull/4) Upgrade core to 1.0.23 and update serenity_bdd package to serenitybdd ([@mikezx6r](https://github.com/mikezx6r))
 - [#3](https://github.com/serenity-bdd/serenity-maven-plugin/pull/3) Rename to Serenity ([@mikezx6r](https://github.com/mikezx6r))
- 
-**Commits:**
- 
-- [080a98d](https://github.com/serenity-bdd/serenity-maven-plugin/commit/080a98d30ef6866377e70a964aea3790312ad921) rename thucydides package to serenitybdd ([@mw-arch](https://github.com/mw-arch))
-- [4a6b120](https://github.com/serenity-bdd/serenity-maven-plugin/commit/4a6b120fffa30af94032a7fda3d8c3998d236d1a) Rename Thucydides prefixed classes with Serenity ([@mw-arch](https://github.com/mw-arch))
-- [daf2969](https://github.com/serenity-bdd/serenity-maven-plugin/commit/daf29696f25206fd1ca63908e98be5520926523f) Upgrade core to 1.0.23 and update serenity_bdd package to serenitybdd ([@mw-arch](https://github.com/mw-arch))
- 
-### v1.0.21 (2014/12/16 02:07 +00:00)
- 
-**Pull requests:**
- 
 - [#2](https://github.com/serenity-bdd/serenity-maven-plugin/pull/2) [build] Use gradle-git to manage versioning and tagging of releases ([@mikezx6r](https://github.com/mikezx6r))
  
 **Commits:**
  
 - [02bfb6a](https://github.com/serenity-bdd/serenity-maven-plugin/commit/02bfb6a33b7237c5388cd05885758150297ee2ee) Fixing dependency issues ([@wakaleo](https://github.com/wakaleo))
+- [080a98d](https://github.com/serenity-bdd/serenity-maven-plugin/commit/080a98d30ef6866377e70a964aea3790312ad921) rename thucydides package to serenitybdd ([@mw-arch](https://github.com/mw-arch))
 - [11c60e4](https://github.com/serenity-bdd/serenity-maven-plugin/commit/11c60e47f07b6eb8d8292dbbf5096f39a832a370) Adding a maven build for the maven plugin ([@wakaleo](https://github.com/wakaleo))
 - [147a205](https://github.com/serenity-bdd/serenity-maven-plugin/commit/147a2050b8f20950f2eec9b5167fa9d7fa5c1c1b) Added extra details for Maven Central sync ([@wakaleo](https://github.com/wakaleo))
 - [14a4c9d](https://github.com/serenity-bdd/serenity-maven-plugin/commit/14a4c9d34d4e86407f06c5b7baf1eedce79b8751) Prepared new release ([@wakaleo](https://github.com/wakaleo))
@@ -648,6 +653,7 @@
 - [3ae48b6](https://github.com/serenity-bdd/serenity-maven-plugin/commit/3ae48b694a197a1533a9829351186b4696b8cea7) Update core version ([@wakaleo](https://github.com/wakaleo))
 - [3bf4339](https://github.com/serenity-bdd/serenity-maven-plugin/commit/3bf43394a863e942da83e38bf509d24ffa1084ca) Use code 1.0.4 ([@wakaleo](https://github.com/wakaleo))
 - [496bf18](https://github.com/serenity-bdd/serenity-maven-plugin/commit/496bf18fd4a6e40b1a466e3ff4a7f8f8404eef2a) Updated dependencies ([@wakaleo](https://github.com/wakaleo))
+- [4a6b120](https://github.com/serenity-bdd/serenity-maven-plugin/commit/4a6b120fffa30af94032a7fda3d8c3998d236d1a) Rename Thucydides prefixed classes with Serenity ([@mw-arch](https://github.com/mw-arch))
 - [4c4f860](https://github.com/serenity-bdd/serenity-maven-plugin/commit/4c4f8606c403991d60d9e4915bdcc43e63d66821) Updated to the latest core version ([@wakaleo](https://github.com/wakaleo))
 - [54c3a3f](https://github.com/serenity-bdd/serenity-maven-plugin/commit/54c3a3fa067a0e303d57bea7a5cac18205301dd1) Updated core to 1.0.15 ([@wakaleo](https://github.com/wakaleo))
 - [7463e51](https://github.com/serenity-bdd/serenity-maven-plugin/commit/7463e51aa861af19cd1499150f026b4c6ef1f74b) Maven and Gradle builds ([@wakaleo](https://github.com/wakaleo))
@@ -663,6 +669,7 @@
 - [bc430cd](https://github.com/serenity-bdd/serenity-maven-plugin/commit/bc430cd8cb67ee2a4da28a4f7a1d3b75a607ac95) Use the maven plugin to deploy to bintray ([@wakaleo](https://github.com/wakaleo))
 - [d3899f7](https://github.com/serenity-bdd/serenity-maven-plugin/commit/d3899f7e0f3c2752480971d9335c798f0b4a788e) Configuring mvn to use the bintray repo ([@wakaleo](https://github.com/wakaleo))
 - [d96d8ae](https://github.com/serenity-bdd/serenity-maven-plugin/commit/d96d8ae221a0c4af7cc00fb15883cd4a09acfc0a) Getting the maven reelase working ([@wakaleo](https://github.com/wakaleo))
+- [daf2969](https://github.com/serenity-bdd/serenity-maven-plugin/commit/daf29696f25206fd1ca63908e98be5520926523f) Upgrade core to 1.0.23 and update serenity_bdd package to serenitybdd ([@mw-arch](https://github.com/mw-arch))
 - [e872787](https://github.com/serenity-bdd/serenity-maven-plugin/commit/e872787e140cee177879433642b4c0b9b008572e) Updated to serenity-core 1.0.3 ([@wakaleo](https://github.com/wakaleo))
 - [ebf43bd](https://github.com/serenity-bdd/serenity-maven-plugin/commit/ebf43bda032f50c49fffbc9a86ecfbe9c4848ef3) Added the serenity repo (temporary measure) ([@wakaleo](https://github.com/wakaleo))
 - [ed211ed](https://github.com/serenity-bdd/serenity-maven-plugin/commit/ed211edbdb99e13bccacbd9b0a639cb9a7e0f09b) Updated core dependency ([@wakaleo](https://github.com/wakaleo))
