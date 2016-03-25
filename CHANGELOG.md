@@ -1,9 +1,10 @@
 ## Serenity BDD Maven Plugin change Log
 
-### upcoming (2016/03/14 05:32 +00:00)
+### upcoming (2016/03/25 12:01 +00:00)
  
 **Pull requests:**
  
+- [#31](https://github.com/serenity-bdd/serenity-maven-plugin/pull/31) Updated contiributing guide - explaned multiline commits and pull requests name convention ([@YamStranger](https://github.com/YamStranger))
 - [#34](https://github.com/serenity-bdd/serenity-maven-plugin/pull/34) Updated core to 1.1.29-rc.1 ([@YamStranger](https://github.com/YamStranger))
  
 **Commits:**
@@ -27,6 +28,10 @@
  
 **Pull requests:**
  
+ 
+**Commits:**
+ 
+- [2cea8d3](https://github.com/serenity-bdd/serenity-maven-plugin/commit/2cea8d342eb05586847da0af11edddbc00d310eb) docs: updating contributing docs ([@YamStranger](https://github.com/YamStranger))
  
 ### v1.1.26 (2016/02/15 23:18 +00:00)
  
