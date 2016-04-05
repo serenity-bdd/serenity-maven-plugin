@@ -1,6 +1,6 @@
 ## Serenity BDD Maven Plugin change Log
 
-### upcoming (2016/03/25 12:01 +00:00)
+### v1.1.29-rc.2 (2016/03/29 08:47 +00:00)
  
 **Pull requests:**
  
