@@ -1,5 +1,13 @@
 ## Serenity BDD Maven Plugin change Log
 
+### v1.1.31 (2016/04/20 05:28 +00:00)
+ 
+ 
+### v1.1.29 (2016/04/05 14:00 +00:00)
+ 
+**Pull requests:**
+ 
+ 
 ### v1.1.29-rc.2 (2016/03/29 08:47 +00:00)
  
 **Pull requests:**
@@ -592,50 +600,6 @@
  
 ### v1.0.30 (2015/02/12 10:54 +00:00)
  
- 
-**Commits:**
- 
-- [59ed99d](https://github.com/serenity-bdd/serenity-maven-plugin/commit/59ed99de65183b1a790767aeb06ae9474dfe1c63) Updated core dependency ([@wakaleo](https://github.com/wakaleo))
-- [bb9ef0e](https://github.com/serenity-bdd/serenity-maven-plugin/commit/bb9ef0ec7705b13ceb78585a2181fe72544a2629) Updated core dependency to 1.0.30 ([@wakaleo](https://github.com/wakaleo))
- 
-### v1.0.28 (2015/02/06 04:17 +00:00)
- 
- 
-**Commits:**
- 
-- [fe2fddb](https://github.com/serenity-bdd/serenity-maven-plugin/commit/fe2fddb2e898d6699898734473bd2e609ad9df13) Updated core ([@wakaleo](https://github.com/wakaleo))
- 
-### v1.0.27 (2015/02/02 05:24 +00:00)
- 
- 
-**Commits:**
- 
-- [fde966d](https://github.com/serenity-bdd/serenity-maven-plugin/commit/fde966d321682e7f9c81a7513453b08047738aed) Updated core dependencies ([@wakaleo](https://github.com/wakaleo))
- 
-### v1.0.26 (2015/01/30 08:45 +00:00)
- 
- 
-**Commits:**
- 
-- [0c5601f](https://github.com/serenity-bdd/serenity-maven-plugin/commit/0c5601f0706c03f50755ef244d64ced00dea2bd0) Updated core dependency ([@wakaleo](https://github.com/wakaleo))
- 
-### v1.0.25 (2015/01/20 21:02 +00:00)
- 
- 
-**Commits:**
- 
-- [543cab5](https://github.com/serenity-bdd/serenity-maven-plugin/commit/543cab5a2b6272c7d777bc574c3e4b1048b56564) Updated core dependency ([@wakaleo](https://github.com/wakaleo))
- 
-### v1.0.24 (2015/01/18 07:05 +00:00)
- 
- 
-**Commits:**
- 
-- [8a51e19](https://github.com/serenity-bdd/serenity-maven-plugin/commit/8a51e199f1be8f63c41b0cd772e48a4a77fc1737) Reverted change to the default output directory back to target/site/thucydides, as more work is needed to get this working properly ([@wakaleo](https://github.com/wakaleo))
-- [9569f82](https://github.com/serenity-bdd/serenity-maven-plugin/commit/9569f8220d9841f727e28b7a65b1033d7961d8e6) Update core version ([@wakaleo](https://github.com/wakaleo))
- 
-### v1.0.23 (2014/12/22 22:52 +00:00)
- 
 **Pull requests:**
  
 - [#4](https://github.com/serenity-bdd/serenity-maven-plugin/pull/4) Upgrade core to 1.0.23 and update serenity_bdd package to serenitybdd ([@mikezx6r](https://github.com/mikezx6r))
@@ -646,6 +610,7 @@
  
 - [02bfb6a](https://github.com/serenity-bdd/serenity-maven-plugin/commit/02bfb6a33b7237c5388cd05885758150297ee2ee) Fixing dependency issues ([@wakaleo](https://github.com/wakaleo))
 - [080a98d](https://github.com/serenity-bdd/serenity-maven-plugin/commit/080a98d30ef6866377e70a964aea3790312ad921) rename thucydides package to serenitybdd ([@mw-arch](https://github.com/mw-arch))
+- [0c5601f](https://github.com/serenity-bdd/serenity-maven-plugin/commit/0c5601f0706c03f50755ef244d64ced00dea2bd0) Updated core dependency ([@wakaleo](https://github.com/wakaleo))
 - [11c60e4](https://github.com/serenity-bdd/serenity-maven-plugin/commit/11c60e47f07b6eb8d8292dbbf5096f39a832a370) Adding a maven build for the maven plugin ([@wakaleo](https://github.com/wakaleo))
 - [147a205](https://github.com/serenity-bdd/serenity-maven-plugin/commit/147a2050b8f20950f2eec9b5167fa9d7fa5c1c1b) Added extra details for Maven Central sync ([@wakaleo](https://github.com/wakaleo))
 - [14a4c9d](https://github.com/serenity-bdd/serenity-maven-plugin/commit/14a4c9d34d4e86407f06c5b7baf1eedce79b8751) Prepared new release ([@wakaleo](https://github.com/wakaleo))
@@ -660,17 +625,22 @@
 - [496bf18](https://github.com/serenity-bdd/serenity-maven-plugin/commit/496bf18fd4a6e40b1a466e3ff4a7f8f8404eef2a) Updated dependencies ([@wakaleo](https://github.com/wakaleo))
 - [4a6b120](https://github.com/serenity-bdd/serenity-maven-plugin/commit/4a6b120fffa30af94032a7fda3d8c3998d236d1a) Rename Thucydides prefixed classes with Serenity ([@mw-arch](https://github.com/mw-arch))
 - [4c4f860](https://github.com/serenity-bdd/serenity-maven-plugin/commit/4c4f8606c403991d60d9e4915bdcc43e63d66821) Updated to the latest core version ([@wakaleo](https://github.com/wakaleo))
+- [543cab5](https://github.com/serenity-bdd/serenity-maven-plugin/commit/543cab5a2b6272c7d777bc574c3e4b1048b56564) Updated core dependency ([@wakaleo](https://github.com/wakaleo))
 - [54c3a3f](https://github.com/serenity-bdd/serenity-maven-plugin/commit/54c3a3fa067a0e303d57bea7a5cac18205301dd1) Updated core to 1.0.15 ([@wakaleo](https://github.com/wakaleo))
+- [59ed99d](https://github.com/serenity-bdd/serenity-maven-plugin/commit/59ed99de65183b1a790767aeb06ae9474dfe1c63) Updated core dependency ([@wakaleo](https://github.com/wakaleo))
 - [7463e51](https://github.com/serenity-bdd/serenity-maven-plugin/commit/7463e51aa861af19cd1499150f026b4c6ef1f74b) Maven and Gradle builds ([@wakaleo](https://github.com/wakaleo))
 - [83ada94](https://github.com/serenity-bdd/serenity-maven-plugin/commit/83ada94526213da94b3c0a8c68b28c062f3f7d92) Updated dependencies ([@wakaleo](https://github.com/wakaleo))
+- [8a51e19](https://github.com/serenity-bdd/serenity-maven-plugin/commit/8a51e199f1be8f63c41b0cd772e48a4a77fc1737) Reverted change to the default output directory back to target/site/thucydides, as more work is needed to get this working properly ([@wakaleo](https://github.com/wakaleo))
 - [8bdfd90](https://github.com/serenity-bdd/serenity-maven-plugin/commit/8bdfd909d1396dc6031970435189731cf80c7541) Adjusting dependency configuration ([@wakaleo](https://github.com/wakaleo))
 - [923d142](https://github.com/serenity-bdd/serenity-maven-plugin/commit/923d1428948946ca0843effd4d88fdb094ab06d5) Updated dependencies ([@wakaleo](https://github.com/wakaleo))
 - [94de94a](https://github.com/serenity-bdd/serenity-maven-plugin/commit/94de94a56820662fb9d898f342c374cae4f06808) Updated to Serenity 1.0.16 ([@wakaleo](https://github.com/wakaleo))
 - [9529ba1](https://github.com/serenity-bdd/serenity-maven-plugin/commit/9529ba1b9333a986007f4893c5a2684ba5b5d603) Added the serenity repo (temporary measure) ([@wakaleo](https://github.com/wakaleo))
+- [9569f82](https://github.com/serenity-bdd/serenity-maven-plugin/commit/9569f8220d9841f727e28b7a65b1033d7961d8e6) Update core version ([@wakaleo](https://github.com/wakaleo))
 - [9f62e89](https://github.com/serenity-bdd/serenity-maven-plugin/commit/9f62e8984a63643e32e3edc63becbe36c48070d3) Use the maven plugin to deploy to bintray ([@wakaleo](https://github.com/wakaleo))
 - [afc709d](https://github.com/serenity-bdd/serenity-maven-plugin/commit/afc709dbadac401d637981410ab4cbd9f6c59961) Fixed release process ([@wakaleo](https://github.com/wakaleo))
 - [b0229f8](https://github.com/serenity-bdd/serenity-maven-plugin/commit/b0229f8eaf5358e4ce30d2829399f8921a055a9b) [build] Use gradle-git to manage versioning and tagging of releases ([@mw-arch](https://github.com/mw-arch))
 - [b71f076](https://github.com/serenity-bdd/serenity-maven-plugin/commit/b71f076f05b5bf10eed76e7666485ccb476f0ad6) Initial commit ([@wakaleo](https://github.com/wakaleo))
+- [bb9ef0e](https://github.com/serenity-bdd/serenity-maven-plugin/commit/bb9ef0ec7705b13ceb78585a2181fe72544a2629) Updated core dependency to 1.0.30 ([@wakaleo](https://github.com/wakaleo))
 - [bc430cd](https://github.com/serenity-bdd/serenity-maven-plugin/commit/bc430cd8cb67ee2a4da28a4f7a1d3b75a607ac95) Use the maven plugin to deploy to bintray ([@wakaleo](https://github.com/wakaleo))
 - [d3899f7](https://github.com/serenity-bdd/serenity-maven-plugin/commit/d3899f7e0f3c2752480971d9335c798f0b4a788e) Configuring mvn to use the bintray repo ([@wakaleo](https://github.com/wakaleo))
 - [d96d8ae](https://github.com/serenity-bdd/serenity-maven-plugin/commit/d96d8ae221a0c4af7cc00fb15883cd4a09acfc0a) Getting the maven reelase working ([@wakaleo](https://github.com/wakaleo))
@@ -682,4 +652,6 @@
 - [f3f8323](https://github.com/serenity-bdd/serenity-maven-plugin/commit/f3f8323282be6b55a68ed17d6e45a1005a701cef) Added the serenity repo (temporary measure) ([@wakaleo](https://github.com/wakaleo))
 - [f91598c](https://github.com/serenity-bdd/serenity-maven-plugin/commit/f91598ca466ca0eecfe0db4638e6d71bcb2b2645) Maven and Gradle builds ([@wakaleo](https://github.com/wakaleo))
 - [fc0bbee](https://github.com/serenity-bdd/serenity-maven-plugin/commit/fc0bbeebaeaec6c4f16dbb65f13c735814086074) Updated dependencies ([@wakaleo](https://github.com/wakaleo))
+- [fde966d](https://github.com/serenity-bdd/serenity-maven-plugin/commit/fde966d321682e7f9c81a7513453b08047738aed) Updated core dependencies ([@wakaleo](https://github.com/wakaleo))
+- [fe2fddb](https://github.com/serenity-bdd/serenity-maven-plugin/commit/fe2fddb2e898d6699898734473bd2e609ad9df13) Updated core ([@wakaleo](https://github.com/wakaleo))
  
