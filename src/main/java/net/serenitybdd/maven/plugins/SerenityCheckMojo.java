@@ -12,17 +12,16 @@ import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
 import java.io.File;
-import java.nio.file.Path;
 
 /**
- * This plugin deletes existing history files for Serenity for this project.
+ * This plugin checks for the presence of failing tests in the target directory
  */
 @Mojo(name = "check")
 public class SerenityCheckMojo extends AbstractMojo {
     /**
      * Aggregate reports are generated here
      */
-    @Parameter(property = "serenity.outputDirectory", defaultValue = "", required=true)
+    @Parameter(property = "serenity.outputDirectory", defaultValue = "")//, required=true)
     public String outputDirectoryPath;
 
     @Parameter(defaultValue = "${session}")
