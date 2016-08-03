@@ -1,5 +1,10 @@
 ## Serenity BDD Maven Plugin change Log
 
+### v1.1.37-rc.6 (2016/06/22 21:27 +00:00)
+ 
+**Pull requests:**
+ 
+ 
 ### v1.1.37-rc.5 (2016/06/15 13:13 +00:00)
  
  
@@ -525,13 +530,6 @@
  
 ### v1.0.46 (2015/04/13 11:14 +00:00)
  
- 
-**Commits:**
- 
-- [a52e9e7](https://github.com/serenity-bdd/serenity-maven-plugin/commit/a52e9e739b68a70bd78d96f568c102d26e8c67d8) Update core dependency to 1.0.46 ([@wakaleo](https://github.com/wakaleo))
- 
-### v1.0.45 (2015/03/31 03:28 +00:00)
- 
 **Pull requests:**
  
 - [#4](https://github.com/serenity-bdd/serenity-maven-plugin/pull/4) Upgrade core to 1.0.23 and update serenity_bdd package to serenitybdd ([@mikezx6r](https://github.com/mikezx6r))
@@ -575,6 +573,7 @@
 - [9529ba1](https://github.com/serenity-bdd/serenity-maven-plugin/commit/9529ba1b9333a986007f4893c5a2684ba5b5d603) Added the serenity repo (temporary measure) ([@wakaleo](https://github.com/wakaleo))
 - [9569f82](https://github.com/serenity-bdd/serenity-maven-plugin/commit/9569f8220d9841f727e28b7a65b1033d7961d8e6) Update core version ([@wakaleo](https://github.com/wakaleo))
 - [9f62e89](https://github.com/serenity-bdd/serenity-maven-plugin/commit/9f62e8984a63643e32e3edc63becbe36c48070d3) Use the maven plugin to deploy to bintray ([@wakaleo](https://github.com/wakaleo))
+- [a52e9e7](https://github.com/serenity-bdd/serenity-maven-plugin/commit/a52e9e739b68a70bd78d96f568c102d26e8c67d8) Update core dependency to 1.0.46 ([@wakaleo](https://github.com/wakaleo))
 - [afc709d](https://github.com/serenity-bdd/serenity-maven-plugin/commit/afc709dbadac401d637981410ab4cbd9f6c59961) Fixed release process ([@wakaleo](https://github.com/wakaleo))
 - [b0229f8](https://github.com/serenity-bdd/serenity-maven-plugin/commit/b0229f8eaf5358e4ce30d2829399f8921a055a9b) [build] Use gradle-git to manage versioning and tagging of releases ([@mw-arch](https://github.com/mw-arch))
 - [b3a203e](https://github.com/serenity-bdd/serenity-maven-plugin/commit/b3a203e4ea341cc8bb6c974808789aca2cd5e35f) feat: Updated core dependency to 1.0.34 ([@wakaleo](https://github.com/wakaleo))
