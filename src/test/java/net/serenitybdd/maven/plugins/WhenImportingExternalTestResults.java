@@ -41,7 +41,7 @@ public class WhenImportingExternalTestResults {
 
         plugin.execute();
 
-        assertThat(outputDirectory.list(xmlFiles())).hasSize(5);
+        assertThat(outputDirectory.list(jsonFiles())).hasSize(5);
     }
 
     @Test
@@ -56,14 +56,14 @@ public class WhenImportingExternalTestResults {
 
         plugin.execute();
 
-        assertThat(outputDirectory.list(xmlFiles())).hasSize(2);
+        assertThat(outputDirectory.list(jsonFiles())).hasSize(2);
     }
 
-    private FilenameFilter xmlFiles() {
+    private FilenameFilter jsonFiles() {
         return new FilenameFilter() {
 
             public boolean accept(File file, String filename) {
-                return filename.endsWith(".xml");
+                return filename.endsWith(".json");
             }
         };
     }
