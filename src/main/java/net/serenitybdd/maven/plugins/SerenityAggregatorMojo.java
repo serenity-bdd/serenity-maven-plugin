@@ -8,7 +8,6 @@ import net.thucydides.core.reports.UserStoryTestReporter;
 import net.thucydides.core.reports.html.HtmlAggregateStoryReporter;
 import net.thucydides.core.util.EnvironmentVariables;
 import net.thucydides.core.webdriver.Configuration;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.maven.execution.MavenSession;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -88,6 +87,10 @@ public class SerenityAggregatorMojo extends AbstractMojo {
      */
     @Parameter(property = "thucydides.project.key", defaultValue = "default")
     public String projectKey;
+
+    @Parameter
+    public String tags;
+
 
     protected void setOutputDirectory(final File outputDirectory) {
         this.outputDirectory = outputDirectory;
@@ -230,6 +233,7 @@ public class SerenityAggregatorMojo extends AbstractMojo {
         getReporter().setJiraProject(jiraProject);
         getReporter().setJiraUsername(jiraUsername);
         getReporter().setJiraPassword(jiraPassword);
+        getReporter().setTags(tags);
         getReporter().generateReportsForTestResultsFrom(sourceDirectory);
     }
 
