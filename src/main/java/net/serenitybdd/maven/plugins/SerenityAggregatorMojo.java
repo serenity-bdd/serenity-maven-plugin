@@ -91,6 +91,8 @@ public class SerenityAggregatorMojo extends AbstractMojo {
     @Parameter
     public String tags;
 
+    @Parameter
+    public Boolean generateOutcomes;
 
     protected void setOutputDirectory(final File outputDirectory) {
         this.outputDirectory = outputDirectory;
@@ -197,7 +199,6 @@ public class SerenityAggregatorMojo extends AbstractMojo {
                 String reportClass = environmentVariables.getProperty(environmentVariable);
                 try {
                     UserStoryTestReporter reporter = (UserStoryTestReporter) Class.forName(reportClass).newInstance();
-                    //String name = lastElementOf(Splitter.on(".").splitToList(environmentVariable));
                     reports.add(reporter);
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
@@ -211,10 +212,6 @@ public class SerenityAggregatorMojo extends AbstractMojo {
         return reports;
     }
 
-//    private String lastElementOf(List<String> elements) {
-//        return elements.isEmpty() ? "" : elements.get(elements.size() - 1);
-//    }
-
     protected HtmlAggregateStoryReporter getReporter() {
         if (reporter == null) {
             reporter = new HtmlAggregateStoryReporter(projectKey);
@@ -226,6 +223,7 @@ public class SerenityAggregatorMojo extends AbstractMojo {
     private void generateHtmlStoryReports() throws IOException {
         System.out.println("Generating HTML Story Reports from "+sourceDirectory.getAbsolutePath());
         System.out.println("Generating HTML Story Reports to "+outputDirectory.getAbsolutePath());
+        System.out.println("Generating HTML Outcome Reports: " + generateOutcomes);
         getReporter().setSourceDirectory(sourceDirectory);
         getReporter().setOutputDirectory(outputDirectory);
         getReporter().setIssueTrackerUrl(issueTrackerUrl);
@@ -234,6 +232,8 @@ public class SerenityAggregatorMojo extends AbstractMojo {
         getReporter().setJiraUsername(jiraUsername);
         getReporter().setJiraPassword(jiraPassword);
         getReporter().setTags(tags);
+        getReporter().setGenerateTestOutcomeReports(generateOutcomes);
+
         getReporter().generateReportsForTestResultsFrom(sourceDirectory);
     }
 
