@@ -92,7 +92,7 @@ public class SerenityAggregatorMojo extends AbstractMojo {
     public String tags;
 
     @Parameter
-    public Boolean generateOutcomes;
+    public boolean generateOutcomes;
 
     protected void setOutputDirectory(final File outputDirectory) {
         this.outputDirectory = outputDirectory;
@@ -232,8 +232,10 @@ public class SerenityAggregatorMojo extends AbstractMojo {
         getReporter().setJiraUsername(jiraUsername);
         getReporter().setJiraPassword(jiraPassword);
         getReporter().setTags(tags);
-        getReporter().setGenerateTestOutcomeReports(generateOutcomes);
 
+        if (generateOutcomes) {
+            getReporter().setGenerateTestOutcomeReports();
+        }
         getReporter().generateReportsForTestResultsFrom(sourceDirectory);
     }
 

@@ -48,6 +48,7 @@ ext {
     projectDescription = 'Serenity Maven Plugin'
 
     serenityCoreVersion = '1.2.2-rc.6'
+
     if (!project.hasProperty("bintrayUsername")) {
         bintrayUsername = 'wakaleo'
     }
