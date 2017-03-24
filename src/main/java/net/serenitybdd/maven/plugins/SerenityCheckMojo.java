@@ -21,8 +21,11 @@ public class SerenityCheckMojo extends AbstractMojo {
     /**
      * Aggregate reports are generated here
      */
-    @Parameter(property = "serenity.outputDirectory", defaultValue = "")//, required=true)
+    @Parameter(property = "serenity.outputDirectory")
     public String outputDirectoryPath;
+
+    @Parameter(property = "tags")
+    public String tags;
 
     @Parameter(defaultValue = "${session}")
     private MavenSession session;
@@ -37,7 +40,7 @@ public class SerenityCheckMojo extends AbstractMojo {
             outputDirectory = session.getCurrentProject().getBasedir().
                     toPath().resolve(getConfiguration().getOutputDirectory().toPath()).toFile();
         }
-        return new ResultChecker(outputDirectory);
+        return new ResultChecker(outputDirectory, tags);
     }
 
     private Configuration getConfiguration() {

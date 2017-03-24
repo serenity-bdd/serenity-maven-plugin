@@ -48,6 +48,7 @@ ext {
     projectDescription = 'Serenity Maven Plugin'
 
     serenityCoreVersion = '1.2.3-rc.1'
+    mavenApiVersion = '3.3.9'
 
     if (!project.hasProperty("bintrayUsername")) {
         bintrayUsername = 'wakaleo'
@@ -77,12 +78,12 @@ configurations.all {
 
 dependencies {
     compile "net.serenity-bdd:serenity-core:${serenityCoreVersion}"
-    compile ("org.apache.maven:maven-core:3.2.5") {
+    compile ("org.apache.maven:maven-core:${mavenApiVersion}") {
         exclude module:"guava"
     }
-    compile ("org.apache.maven:maven-plugin-api:3.2.5")
+    compile ("org.apache.maven:maven-plugin-api:${mavenApiVersion}")
     compile "org.apache.maven.reporting:maven-reporting-api:3.0"
-    compile("org.apache.maven.plugin-tools:maven-plugin-annotations:3.4") {
+    compile("org.apache.maven.plugin-tools:maven-plugin-annotations:3.5") {
         exclude module: "maven-artifact"
     }
 
@@ -92,12 +93,14 @@ dependencies {
     testCompile('org.mockito:mockito-all:1.9.5') {
         exclude group: "org.hamcrest", module:"hamcrest-all"
     }
-    testCompile("org.spockframework:spock-core:0.7-groovy-2.0") {
+    testCompile('org.spockframework:spock-core:1.0-groovy-2.4') {
         exclude module: "junit-dep"
         exclude module: "groovy-all"
     }
     testCompile("com.github.goldin:spock-extensions:0.1.4") {
-        exclude module: "spock-core"
+        exclude group:"org.spockframework", module: "spock-core"
+        exclude group:"org.slf4j", module: "slf4j-api"
+        exclude group:"asm", module: "asm"
     }
     testCompile("org.codehaus.groovy:groovy-all:2.4.4")
     testCompile("org.easytesting:fest-assert:1.4")
