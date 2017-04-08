@@ -1,5 +1,6 @@
 package net.serenitybdd.maven.plugins;
 
+import net.serenitybdd.core.history.FileSystemTestOutcomeSummaryRecorder;
 import net.serenitybdd.core.history.TestOutcomeSummaryRecorder;
 import net.thucydides.core.ThucydidesSystemProperty;
 import net.thucydides.core.guice.Injectors;
@@ -46,7 +47,7 @@ public class SerenityHistoryMojo extends AbstractMojo {
 
         Path historyDirectory = Paths.get(configuredHistoryDirectoryPath);
 
-        return new TestOutcomeSummaryRecorder(historyDirectory, deletePreviousHistory);
+        return new FileSystemTestOutcomeSummaryRecorder(historyDirectory, deletePreviousHistory);
     }
 
     private Path outputDirectory() {
