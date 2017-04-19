@@ -1,5 +1,6 @@
 package net.serenitybdd.maven.plugins;
 
+import com.google.common.base.Optional;
 import net.serenitybdd.core.history.FileSystemTestOutcomeSummaryRecorder;
 import net.serenitybdd.core.history.TestOutcomeSummaryRecorder;
 import net.thucydides.core.ThucydidesSystemProperty;
@@ -22,6 +23,8 @@ import java.nio.file.Paths;
  */
 @Mojo(name = "history")
 public class SerenityHistoryMojo extends AbstractMojo {
+
+    private final static String DEFAULT_HISTORY_DIRECTORY = "history";
     /**
      * Test outcome summaries are stored here
      */
@@ -32,7 +35,7 @@ public class SerenityHistoryMojo extends AbstractMojo {
     public String historyDirectoryPath;
 
     @Parameter(property = "serenity.deletePreviousHistory")
-    public Boolean deletePreviousHistory;
+    public Boolean deletePreviousHistory = false;
 
     @Parameter(defaultValue = "${session}")
     private MavenSession session;
@@ -43,7 +46,15 @@ public class SerenityHistoryMojo extends AbstractMojo {
         MavenProjectHelper.propagateBuildDir(session);
 
         EnvironmentVariables environmentVariables = Injectors.getInjector().getInstance(EnvironmentVariables.class);
-        String configuredHistoryDirectoryPath = ThucydidesSystemProperty.SERENITY_HISTORY_DIRECTORY.from(environmentVariables, historyDirectoryPath);
+
+        System.out.println("historyDirectoryPath = " + historyDirectoryPath);
+        System.out.println("SERENITY_HISTORY_DIRECTORY = " + ThucydidesSystemProperty.SERENITY_HISTORY_DIRECTORY.from(environmentVariables));
+
+        String configuredHistoryDirectoryPath
+                = ThucydidesSystemProperty.SERENITY_HISTORY_DIRECTORY.from(environmentVariables,
+                                                                           Optional.fromNullable(historyDirectoryPath).or(DEFAULT_HISTORY_DIRECTORY));
+
+        System.out.println("configuredHistoryDirectoryPath = " + configuredHistoryDirectoryPath);
 
         Path historyDirectory = Paths.get(configuredHistoryDirectoryPath);
 
