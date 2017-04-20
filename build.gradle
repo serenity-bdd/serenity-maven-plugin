@@ -107,7 +107,7 @@ dependencies {
 }
 
 task pluginDescriptor(type: Exec) {
-    commandLine 'mvn', '-e', '-B', 'org.apache.maven.plugins:maven-plugin-plugin:3.3:descriptor','-s','config/settings.xml'
+    commandLine 'mvn', '-e', '-B', 'org.apache.maven.plugins:maven-plugin-plugin:3.3:descriptor', '-s', 'config/settings.xml'
     doFirst {
         final File pom = project.file('pom.xml')
         install.repositories.mavenInstaller.pom.writeTo(pom)
@@ -125,12 +125,14 @@ task pluginDescriptor(type: Exec) {
                                                               |  </build>
                                                               |""".stripMargin().trim())
     }
-    doLast {
-        final pluginDescriptor = new File((File) project.compileGroovy.destinationDir, 'META-INF/maven/plugin.xml')
-        assert pluginDescriptor.file, "[$pluginDescriptor.canonicalPath] was not created"
-        println "Plugin descriptor file:$pluginDescriptor.canonicalPath is created successfully"
-    }
 }
+
+project.pluginDescriptor.doLast {
+    final pluginDescriptor = new File((File) project.compileGroovy.destinationDir, 'META-INF/maven/plugin.xml')
+    assert pluginDescriptor.file, "[$pluginDescriptor.canonicalPath] was not created"
+    println "Plugin descriptor file:$pluginDescriptor.canonicalPath is created successfully"
+}
+
 
 project.compileJava.doLast { pluginDescriptor.execute() }
 
