@@ -48,7 +48,7 @@ ext {
     projectDescription = 'Serenity Maven Plugin'
 
     mavenApiVersion = '3.2.5'
-    serenityCoreVersion = '1.2.5-rc.14'
+    serenityCoreVersion = '1.2.5-rc.16'
 
     if (!project.hasProperty("bintrayUsername")) {
         bintrayUsername = 'wakaleo'
@@ -61,7 +61,7 @@ ext {
 group = 'net.serenity-bdd.maven.plugins'
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.10'
+    gradleVersion = '3.5'
 }
 
 configurations.all {
