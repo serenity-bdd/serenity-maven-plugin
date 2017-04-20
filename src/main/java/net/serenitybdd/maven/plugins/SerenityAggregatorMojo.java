@@ -182,10 +182,8 @@ public class SerenityAggregatorMojo extends AbstractMojo {
     }
 
     private void generateCustomReports() throws IOException {
-        System.out.println("GENERATE CUSTOM REPORTS");
         Collection<UserStoryTestReporter> customReporters = getCustomReportsFor(environmentVariables);
         for(UserStoryTestReporter reporter : customReporters) {
-            System.out.println("GENERATE CUSTOM REPORT FOR " + reporter.getClass().getCanonicalName());
             reporter.generateReportsForTestResultsFrom(sourceOfTestResult());
         }
      }
@@ -221,9 +219,6 @@ public class SerenityAggregatorMojo extends AbstractMojo {
     }
 
     private void generateHtmlStoryReports() throws IOException {
-        System.out.println("Generating HTML Story Reports from "+sourceDirectory.getAbsolutePath());
-        System.out.println("Generating HTML Story Reports to "+outputDirectory.getAbsolutePath());
-        System.out.println("Generating HTML Outcome Reports: " + generateOutcomes);
         getReporter().setSourceDirectory(sourceDirectory);
         getReporter().setOutputDirectory(outputDirectory);
         getReporter().setIssueTrackerUrl(issueTrackerUrl);

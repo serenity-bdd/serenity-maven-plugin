@@ -47,14 +47,9 @@ public class SerenityHistoryMojo extends AbstractMojo {
 
         EnvironmentVariables environmentVariables = Injectors.getInjector().getInstance(EnvironmentVariables.class);
 
-        System.out.println("historyDirectoryPath = " + historyDirectoryPath);
-        System.out.println("SERENITY_HISTORY_DIRECTORY = " + ThucydidesSystemProperty.SERENITY_HISTORY_DIRECTORY.from(environmentVariables));
-
         String configuredHistoryDirectoryPath
                 = ThucydidesSystemProperty.SERENITY_HISTORY_DIRECTORY.from(environmentVariables,
                                                                            Optional.fromNullable(historyDirectoryPath).or(DEFAULT_HISTORY_DIRECTORY));
-
-        System.out.println("configuredHistoryDirectoryPath = " + configuredHistoryDirectoryPath);
 
         Path historyDirectory = Paths.get(configuredHistoryDirectoryPath);
 
