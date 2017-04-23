@@ -88,7 +88,7 @@ public class SerenityAggregatorMojo extends AbstractMojo {
     @Parameter(property = "thucydides.project.key", defaultValue = "default")
     public String projectKey;
 
-    @Parameter
+    @Parameter(property = "tags", defaultValue = "")
     public String tags;
 
     @Parameter

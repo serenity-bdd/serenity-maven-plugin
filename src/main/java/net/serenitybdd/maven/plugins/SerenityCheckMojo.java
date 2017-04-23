@@ -24,7 +24,7 @@ public class SerenityCheckMojo extends AbstractMojo {
     @Parameter(property = "serenity.outputDirectory")
     public String outputDirectoryPath;
 
-    @Parameter(property = "tags")
+    @Parameter(property = "tags", defaultValue = "")
     public String tags;
 
     @Parameter(defaultValue = "${session}")
