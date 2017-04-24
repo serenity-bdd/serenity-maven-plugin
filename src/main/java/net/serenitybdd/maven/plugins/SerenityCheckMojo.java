@@ -40,7 +40,7 @@ public class SerenityCheckMojo extends AbstractMojo {
             outputDirectory = session.getCurrentProject().getBasedir().
                     toPath().resolve(getConfiguration().getOutputDirectory().toPath()).toFile();
         }
-        return new ResultChecker(outputDirectory, tags);
+        return new ResultChecker(outputDirectory, StringUtils.trimToEmpty(tags));
     }
 
     private Configuration getConfiguration() {
