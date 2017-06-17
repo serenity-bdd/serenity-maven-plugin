@@ -48,7 +48,7 @@ ext {
     projectDescription = 'Serenity Maven Plugin'
 
     mavenApiVersion = '3.2.5'
-    serenityCoreVersion = '1.4.1-rc.5'
+    serenityCoreVersion = '1.4.1-rc.6'
 
     if (!project.hasProperty("bintrayUsername")) {
         bintrayUsername = 'wakaleo'
@@ -61,7 +61,7 @@ ext {
 group = 'net.serenity-bdd.maven.plugins'
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '3.5'
+    gradleVersion = '4.0'
 }
 
 configurations.all {
@@ -102,7 +102,7 @@ dependencies {
         exclude group:"org.slf4j", module: "slf4j-api"
         exclude group:"asm", module: "asm"
     }
-    testCompile("org.codehaus.groovy:groovy-all:2.4.4")
+    testCompile("org.codehaus.groovy:groovy-all:2.4.11")
     testCompile("org.easytesting:fest-assert:1.4")
 }
 
