@@ -47,9 +47,6 @@ ext {
     bintrayPackage = 'serenity-core'
     projectDescription = 'Serenity Maven Plugin'
 
-    mavenApiVersion = '3.2.5'
-    serenityCoreVersion = '1.5.0-rc.2'
-
     if (!project.hasProperty("bintrayUsername")) {
         bintrayUsername = 'wakaleo'
     }
@@ -61,18 +58,18 @@ ext {
 group = 'net.serenity-bdd.maven.plugins'
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '4.0'
+    gradleVersion = "${gradleVersion}"
 }
 
 configurations.all {
     resolutionStrategy {
         // fail fast on dependency convergence problems
         failOnVersionConflict()
-        force 'org.codehaus.plexus:plexus-classworlds:2.5.2',
-            'org.codehaus.plexus:plexus-utils:3.0.20',
-            'org.slf4j:slf4j-api:1.7.7',
-            'commons-collections:commons-collections:3.2.2',
-            'xml-apis:xml-apis:1.4.01'
+        force "org.codehaus.plexus:plexus-classworlds:${plexusClasswordsVersion}",
+            "org.codehaus.plexus:plexus-utils:${plexusUtilsVersion}",
+            "org.slf4j:slf4j-api:${slf4jVersion}",
+            "commons-collections:commons-collections:${commonsCollectionsVersion}",
+                "xml-apis:xml-apis:${xmlApiVersion}"
     }
 }
 
@@ -80,30 +77,43 @@ dependencies {
     compile "net.serenity-bdd:serenity-core:${serenityCoreVersion}"
     compile ("org.apache.maven:maven-core:${mavenApiVersion}") {
         exclude module:"guava"
+        exclude module:"guice"
+        exclude module:"commons-lang3"
+        exclude module: "org.eclipse.sisu.plexus"
     }
-    compile ("org.apache.maven:maven-plugin-api:${mavenApiVersion}")
-    compile "org.apache.maven.reporting:maven-reporting-api:3.0"
-    compile("org.apache.maven.plugin-tools:maven-plugin-annotations:3.5") {
+
+    compile ("org.apache.maven:maven-plugin-api:${mavenApiVersion}") {
+        exclude module:"commons-lang3"
+        exclude module: "org.eclipse.sisu.plexus"
+    }
+
+    compile ("org.eclipse.sisu:org.eclipse.sisu.plexus:0.3.3") {
+        exclude module: "plexus-component-annotations"
+    }
+
+    compile "org.apache.maven.reporting:maven-reporting-api:${mavenReportingApiVersion}"
+    compile("org.apache.maven.plugin-tools:maven-plugin-annotations:${mavenPluginAnnotationsVersion}") {
         exclude module: "maven-artifact"
     }
 
-    testCompile "ch.qos.logback:logback-classic:1.1.2"
-    testCompile "junit:junit:4.12"
-    testCompile "org.hamcrest:hamcrest-core:1.3"
-    testCompile('org.mockito:mockito-all:1.9.5') {
+    testCompile "ch.qos.logback:logback-classic:${logbackVersion}"
+    testCompile "junit:junit:${junitVersion}"
+    testCompile "org.hamcrest:hamcrest-core:${hamcrestVersion}"
+    testCompile("org.mockito:mockito-all:${mockitoCoreVersion}") {
         exclude group: "org.hamcrest", module:"hamcrest-all"
     }
-    testCompile('org.spockframework:spock-core:1.0-groovy-2.4') {
+    testCompile("org.spockframework:spock-core:${spockVersion}") {
         exclude module: "junit-dep"
         exclude module: "groovy-all"
     }
-    testCompile("com.github.goldin:spock-extensions:0.1.4") {
+    testCompile("com.github.goldin:spock-extensions:${spockExtensionsVersion}") {
         exclude group:"org.spockframework", module: "spock-core"
         exclude group:"org.slf4j", module: "slf4j-api"
         exclude group:"asm", module: "asm"
     }
-    testCompile("org.codehaus.groovy:groovy-all:2.4.11")
-    testCompile("org.easytesting:fest-assert:1.4")
+    testCompile("org.codehaus.groovy:groovy-all:${groovyVersion}")
+    testCompile "org.assertj:assertj-core:${assertjVersion}"
+
 }
 
 task pluginDescriptor(type: Exec) {
