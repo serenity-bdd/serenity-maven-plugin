@@ -198,11 +198,7 @@ public class SerenityAggregatorMojo extends AbstractMojo {
                 try {
                     UserStoryTestReporter reporter = (UserStoryTestReporter) Class.forName(reportClass).newInstance();
                     reports.add(reporter);
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                } catch (InstantiationException e) {
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
+                } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
                     e.printStackTrace();
                 }
             }
