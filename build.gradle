@@ -7,7 +7,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'org.ajoberstar:gradle-git:1.5.0-rc.2git comm'
+        classpath 'org.ajoberstar:gradle-git:1.4.0-rc.1'
     }
 }
 
@@ -48,7 +48,7 @@ ext {
     projectDescription = 'Serenity Maven Plugin'
 
     mavenApiVersion = '3.2.5'
-    serenityCoreVersion = '1.5.0-rc.1'
+    serenityCoreVersion = '1.5.0-rc.2'
 
     if (!project.hasProperty("bintrayUsername")) {
         bintrayUsername = 'wakaleo'
