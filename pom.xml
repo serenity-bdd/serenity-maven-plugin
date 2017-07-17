@@ -8,7 +8,9 @@
   <version>1.5.0-SNAPSHOT</version>
   <packaging>maven-plugin</packaging>
   <properties>
-
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <bintray.repo>serenity/maven</bintray.repo>
+    <bintray.package>serenity-maven-plugin</bintray.package>
   </properties>
 
   <scm>
@@ -48,6 +50,20 @@
         <version>2.5.3</version>
       </plugin>
     </plugins>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>2.3.2</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-source-plugin</artifactId>
+          <version>2.1.2</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
   </build>
   <dependencies>
     <dependency>
@@ -142,7 +158,7 @@
     <repository>
       <id>bintray-serenity-maven</id>
       <name>serenity-maven</name>
-      <url>https://api.bintray.com/maven/serenity/maven/serenity-maven-plugin/;publish=1</url>
+      <url>https://api.bintray.com/maven/${bintray.repo}/${bintray.package}/;publish=1</url>
     </repository>
   </distributionManagement>
 </project>
