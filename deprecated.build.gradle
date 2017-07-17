@@ -1,6 +1,9 @@
 import org.ajoberstar.grgit.*
 import org.ajoberstar.gradle.git.release.opinion.Strategies
 
+/**
+ * Deprecated: back to using Maven to genereate the Maven plugin
+ */
 buildscript {
     repositories {
         mavenLocal()
@@ -64,7 +67,7 @@ task wrapper(type: Wrapper) {
 configurations.all {
     resolutionStrategy {
         // fail fast on dependency convergence problems
-        failOnVersionConflict()
+        //failOnVersionConflict()
         force "org.codehaus.plexus:plexus-classworlds:${plexusClasswordsVersion}",
             "org.codehaus.plexus:plexus-utils:${plexusUtilsVersion}",
             "org.slf4j:slf4j-api:${slf4jVersion}",
@@ -79,16 +82,10 @@ dependencies {
         exclude module:"guava"
         exclude module:"guice"
         exclude module:"commons-lang3"
-        exclude module: "org.eclipse.sisu.plexus"
     }
 
     compile ("org.apache.maven:maven-plugin-api:${mavenApiVersion}") {
         exclude module:"commons-lang3"
-        exclude module: "org.eclipse.sisu.plexus"
-    }
-
-    compile ("org.eclipse.sisu:org.eclipse.sisu.plexus:0.3.3") {
-        exclude module: "plexus-component-annotations"
     }
 
     compile "org.apache.maven.reporting:maven-reporting-api:${mavenReportingApiVersion}"
@@ -96,28 +93,17 @@ dependencies {
         exclude module: "maven-artifact"
     }
 
-    testCompile "ch.qos.logback:logback-classic:${logbackVersion}"
     testCompile "junit:junit:${junitVersion}"
     testCompile "org.hamcrest:hamcrest-core:${hamcrestVersion}"
     testCompile("org.mockito:mockito-all:${mockitoCoreVersion}") {
         exclude group: "org.hamcrest", module:"hamcrest-all"
     }
-    testCompile("org.spockframework:spock-core:${spockVersion}") {
-        exclude module: "junit-dep"
-        exclude module: "groovy-all"
-    }
-    testCompile("com.github.goldin:spock-extensions:${spockExtensionsVersion}") {
-        exclude group:"org.spockframework", module: "spock-core"
-        exclude group:"org.slf4j", module: "slf4j-api"
-        exclude group:"asm", module: "asm"
-    }
-    testCompile("org.codehaus.groovy:groovy-all:${groovyVersion}")
     testCompile "org.assertj:assertj-core:${assertjVersion}"
 
 }
 
 task pluginDescriptor(type: Exec) {
-    commandLine 'mvn', '-e', '-B', 'org.apache.maven.plugins:maven-plugin-plugin:3.3:descriptor', '-s', 'config/settings.xml'
+    commandLine 'mvn', '-e', '-B', 'org.apache.maven.plugins:maven-plugin-plugin:3.5:descriptor', '-s', 'config/settings.xml'
     doFirst {
         final File pom = project.file('pom.xml')
         install.repositories.mavenInstaller.pom.writeTo(pom)
