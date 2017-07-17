@@ -11,6 +11,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <bintray.repo>serenity/maven</bintray.repo>
     <bintray.package>serenity-maven-plugin</bintray.package>
+    <serenity.version>1.5.1-rc.5</serenity.version>
   </properties>
 
   <scm>
@@ -90,7 +91,7 @@
     <dependency>
       <groupId>net.serenity-bdd</groupId>
       <artifactId>serenity-core</artifactId>
-      <version>1.5.0-rc.4</version>
+      <version>${serenity.version}</version>
       <scope>compile</scope>
     </dependency>
     <dependency>

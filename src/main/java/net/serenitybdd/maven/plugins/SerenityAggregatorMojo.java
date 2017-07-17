@@ -14,6 +14,7 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.plugins.annotations.ResolutionScope;
+import org.apache.maven.project.MavenProject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,11 +23,12 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Collection;
 import java.util.Locale;
+import java.util.Optional;
 
 /**
  * Generate aggregate XML acceptance test reports.
  */
-@Mojo(name = "aggregate", requiresProject = false, requiresDependencyResolution = ResolutionScope.COMPILE)
+@Mojo(name = "aggregate", requiresProject = false, requiresDependencyResolution = ResolutionScope.RUNTIME)
 public class SerenityAggregatorMojo extends AbstractMojo {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(SerenityAggregatorMojo.class);
@@ -88,8 +90,11 @@ public class SerenityAggregatorMojo extends AbstractMojo {
     @Parameter(property = "thucydides.project.key", defaultValue = "default")
     public String projectKey;
 
-    @Parameter(property = "tags", defaultValue = "")
+    @Parameter(property = "tags")
     public String tags;
+
+    @Parameter(defaultValue = "${project}")
+    public MavenProject project;
 
     @Parameter
     public boolean generateOutcomes;
@@ -103,13 +108,14 @@ public class SerenityAggregatorMojo extends AbstractMojo {
         this.sourceDirectory = sourceDirectory;
     }
 
-    public void prepareExecution() {
+    public void prepareExecution() throws MojoExecutionException {
         MavenProjectHelper.propagateBuildDir(session);
         configureOutputDirectorySettings();
         if (!outputDirectory.exists()) {
             outputDirectory.mkdirs();
         }
         configureEnvironmentVariables();
+        UpdatedClassLoader.withProjectClassesFrom(project);
     }
 
     private void configureOutputDirectorySettings() {
@@ -120,7 +126,9 @@ public class SerenityAggregatorMojo extends AbstractMojo {
             sourceDirectory = getConfiguration().getOutputDirectory();
         }
         final Path projectDir = session.getCurrentProject().getBasedir().toPath();
+
         LOGGER.info("current_project.base.dir: " + projectDir.toAbsolutePath().toString());
+
         if (!outputDirectory.isAbsolute()) {
             outputDirectory = projectDir.resolve(outputDirectory.toPath()).toFile();
         }
@@ -151,17 +159,15 @@ public class SerenityAggregatorMojo extends AbstractMojo {
     }
 
     private void updateSystemProperty(String key, String value, String defaultValue) {
-        if (value != null) {
-            getEnvironmentVariables().setProperty(key, value);
-        } else {
-            getEnvironmentVariables().setProperty(key, defaultValue);
-        }
+        getEnvironmentVariables().setProperty(key,
+                                              Optional.ofNullable(value).orElse(defaultValue));
     }
 
     private void updateSystemProperty(String key, String value) {
-        if (value != null) {
-            getEnvironmentVariables().setProperty(key, value);
-        }
+
+        Optional.ofNullable(value).ifPresent(
+                propertyValue -> getEnvironmentVariables().setProperty(key, propertyValue)
+        );
     }
 
     private HtmlAggregateStoryReporter reporter;
@@ -183,6 +189,7 @@ public class SerenityAggregatorMojo extends AbstractMojo {
 
     private void generateCustomReports() throws IOException {
         Collection<UserStoryTestReporter> customReporters = getCustomReportsFor(environmentVariables);
+
         for(UserStoryTestReporter reporter : customReporters) {
             reporter.generateReportsForTestResultsFrom(sourceOfTestResult());
         }

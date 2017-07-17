@@ -1,9 +1,7 @@
 package net.serenitybdd.maven.plugins;
 
-import com.google.common.base.Optional;
 import net.serenitybdd.core.history.FileSystemTestOutcomeSummaryRecorder;
 import net.serenitybdd.core.history.TestOutcomeSummaryRecorder;
-import net.thucydides.core.ThucydidesSystemProperty;
 import net.thucydides.core.guice.Injectors;
 import net.thucydides.core.util.EnvironmentVariables;
 import net.thucydides.core.webdriver.Configuration;
@@ -14,14 +12,19 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
+import org.apache.maven.plugins.annotations.ResolutionScope;
+import org.apache.maven.project.MavenProject;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Optional;
+
+import static net.thucydides.core.ThucydidesSystemProperty.SERENITY_HISTORY_DIRECTORY;
 
 /**
  * This plugin records a summary of test results in the target directory
  */
-@Mojo(name = "history")
+@Mojo(name = "history", requiresDependencyResolution = ResolutionScope.RUNTIME)
 public class SerenityHistoryMojo extends AbstractMojo {
 
     private final static String DEFAULT_HISTORY_DIRECTORY = "history";
@@ -41,15 +44,18 @@ public class SerenityHistoryMojo extends AbstractMojo {
     private MavenSession session;
 
 
+    @Parameter(defaultValue = "${project}")
+    public MavenProject project;
+
+
     protected TestOutcomeSummaryRecorder getTestOutcomeSummaryRecorder() {
 
         MavenProjectHelper.propagateBuildDir(session);
 
         EnvironmentVariables environmentVariables = Injectors.getInjector().getInstance(EnvironmentVariables.class);
 
-        String configuredHistoryDirectoryPath
-                = ThucydidesSystemProperty.SERENITY_HISTORY_DIRECTORY.from(environmentVariables,
-                                                                           Optional.fromNullable(historyDirectoryPath).or(DEFAULT_HISTORY_DIRECTORY));
+        String configuredHistoryDirectoryPath = SERENITY_HISTORY_DIRECTORY.from(environmentVariables,
+                                                                                Optional.ofNullable(historyDirectoryPath).orElse(DEFAULT_HISTORY_DIRECTORY));
 
         Path historyDirectory = Paths.get(configuredHistoryDirectoryPath);
 
@@ -68,6 +74,9 @@ public class SerenityHistoryMojo extends AbstractMojo {
 
     public void execute() throws MojoExecutionException, MojoFailureException {
         getLog().info("Storing Serenity test result summaries");
+
+        UpdatedClassLoader.withProjectClassesFrom(project);
+
         getTestOutcomeSummaryRecorder().recordOutcomeSummariesFrom(outputDirectory());
     }
 }

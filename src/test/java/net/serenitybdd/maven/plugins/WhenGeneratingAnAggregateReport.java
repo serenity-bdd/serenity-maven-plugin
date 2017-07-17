@@ -45,6 +45,7 @@ public class WhenGeneratingAnAggregateReport {
         plugin.setOutputDirectory(outputDirectory);
         plugin.setSourceDirectory(sourceDirectory);
         plugin.setReporter(reporter);
+        plugin.project = project;
         plugin.session = Mockito.mock(MavenSession.class);
         MavenProject project=Mockito.mock(MavenProject.class);
         Mockito.when(project.getBasedir()).thenReturn(new File("."));
