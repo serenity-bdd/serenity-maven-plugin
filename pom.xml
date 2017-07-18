@@ -14,6 +14,24 @@
     <serenity.version>1.5.1</serenity.version>
   </properties>
 
+  <name>serenity-maven-plugin</name>
+  <description>Serenity Maven Plugin</description>
+  <url>https://github.com/serenity-bdd/serenity-maven-plugin</url>
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/license/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <id>johnsmart</id>
+      <name>John Ferguson Smart</name>
+      <email>john.smart@wakaleo.com</email>
+    </developer>
+  </developers>
+
   <scm>
     <connection>scm:git:https://github.com/serenity-bdd/maven-serenity-plugin.git</connection>
     <developerConnection>scm:git:git@github.com:serenity-bdd/maven-serenity-plugin.git</developerConnection>
