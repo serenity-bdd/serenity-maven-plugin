@@ -10,34 +10,44 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
+import org.apache.maven.plugins.annotations.ResolutionScope;
+import org.apache.maven.project.MavenProject;
 
 import java.io.File;
+
+import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 
 /**
  * This plugin checks for the presence of failing tests in the target directory
  */
-@Mojo(name = "check")
+@Mojo(name = "check", requiresDependencyResolution = ResolutionScope.RUNTIME)
 public class SerenityCheckMojo extends AbstractMojo {
     /**
      * Aggregate reports are generated here
      */
-    @Parameter(property = "serenity.outputDirectory", defaultValue = "")//, required=true)
+    @Parameter(property = "serenity.outputDirectory")
     public String outputDirectoryPath;
+
+    @Parameter(property = "tags", defaultValue = "")
+    public String tags;
 
     @Parameter(defaultValue = "${session}")
     private MavenSession session;
+
+    @Parameter(defaultValue = "${project}")
+    public MavenProject project;
 
     protected ResultChecker getResultChecker() {
 
         MavenProjectHelper.propagateBuildDir(session);
         File outputDirectory;
-        if(!StringUtils.isEmpty(outputDirectoryPath)){
+
+        if(isNotEmpty(outputDirectoryPath)){
             outputDirectory = session.getCurrentProject().getBasedir().toPath().resolve(outputDirectoryPath).toFile();
         }else{
-            outputDirectory = session.getCurrentProject().getBasedir().
-                    toPath().resolve(getConfiguration().getOutputDirectory().toPath()).toFile();
+            outputDirectory = session.getCurrentProject().getBasedir().toPath().resolve(getConfiguration().getOutputDirectory().toPath()).toFile();
         }
-        return new ResultChecker(outputDirectory);
+        return new ResultChecker(outputDirectory, StringUtils.trimToEmpty(tags));
     }
 
     private Configuration getConfiguration() {
@@ -46,6 +56,9 @@ public class SerenityCheckMojo extends AbstractMojo {
 
     public void execute() throws MojoExecutionException, MojoFailureException {
         getLog().info("Checking Serenity test results");
+
+        UpdatedClassLoader.withProjectClassesFrom(project);
+
         getResultChecker().checkTestResults();
     }
 }

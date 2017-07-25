@@ -20,6 +20,7 @@ public class MavenProjectHelper {
      * If maven will be executed in module or in project without children, that serenity.properties will be loaded from
      * correct path, but if mvn executed from root project with children, properties will be loaded root project folder,
      * but should from module folder, and only after that from root folder - this is fix for it.
+     * @param session current Maven session
      */
     protected static void propagateBuildDir(MavenSession session){
         System.setProperty("project.build.directory", session.getCurrentProject().getBasedir().getAbsolutePath());
