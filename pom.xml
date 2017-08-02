@@ -12,7 +12,7 @@
         <bintray.repo>serenity/maven</bintray.repo>
         <bintray.package>serenity-maven-plugin</bintray.package>
 
-        <serenity.version>1.5.3</serenity.version>
+        <serenity.version>1.5.4-rc.1</serenity.version>
         <java.version>1.8</java.version>
         <maven.core.version>3.5.0</maven.core.version>
         <maven.repoorting.version>3.0</maven.repoorting.version>
