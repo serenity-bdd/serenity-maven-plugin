@@ -63,7 +63,7 @@ public class WhenImportingExternalTestResults {
         return new FilenameFilter() {
 
             public boolean accept(File file, String filename) {
-                return filename.endsWith(".json");
+                return filename.endsWith(".json") && !filename.startsWith("manifest");
             }
         };
     }
