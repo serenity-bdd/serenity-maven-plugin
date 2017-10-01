@@ -5,13 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.serenity-bdd.maven.plugins</groupId>
     <artifactId>serenity-maven-plugin</artifactId>
-    <version>1.5.1-SNAPSHOT</version>
+    <version>1.6.1-SNAPSHOT</version>
     <packaging>maven-plugin</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <bintray.repo>serenity/maven</bintray.repo>
         <bintray.package>serenity-maven-plugin</bintray.package>
-        <serenity.version>1.6.0</serenity.version>
+        <serenity.version>1.6.1</serenity.version>
         <java.version>1.8</java.version>
         <maven.core.version>3.5.0</maven.core.version>
         <maven.repoorting.version>3.0</maven.repoorting.version>
