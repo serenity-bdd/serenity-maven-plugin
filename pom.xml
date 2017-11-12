@@ -11,7 +11,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <bintray.repo>serenity/maven</bintray.repo>
         <bintray.package>serenity-maven-plugin</bintray.package>
-        <serenity.version>1.7.3</serenity.version>
+        <serenity.version>1.7.4</serenity.version>
         <java.version>1.8</java.version>
         <maven.core.version>3.5.0</maven.core.version>
         <maven.repoorting.version>3.0</maven.repoorting.version>
