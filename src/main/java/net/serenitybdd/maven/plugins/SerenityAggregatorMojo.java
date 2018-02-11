@@ -1,6 +1,5 @@
 package net.serenitybdd.maven.plugins;
 
-import com.beust.jcommander.internal.Lists;
 import net.serenitybdd.core.Serenity;
 import net.thucydides.core.ThucydidesSystemProperty;
 import net.thucydides.core.guice.Injectors;
@@ -21,9 +20,11 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Locale;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Generate aggregate XML acceptance test reports.
@@ -197,20 +198,22 @@ public class SerenityAggregatorMojo extends AbstractMojo {
 
     private Collection<UserStoryTestReporter> getCustomReportsFor(EnvironmentVariables environmentVariables) {
 
-        Collection<UserStoryTestReporter> reports = Lists.newArrayList();
+        return environmentVariables.getKeys().stream()
+                .filter(key -> key.startsWith("serenity.custom.reporters."))
+                .map(this::reportFrom)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .collect(Collectors.toList());
+    }
 
-        for(String environmentVariable : environmentVariables.getKeys()) {
-            if (environmentVariable.startsWith("serenity.custom.reporters.")) {
-                String reportClass = environmentVariables.getProperty(environmentVariable);
-                try {
-                    UserStoryTestReporter reporter = (UserStoryTestReporter) Class.forName(reportClass).newInstance();
-                    reports.add(reporter);
-                } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
-                    e.printStackTrace();
-                }
-            }
+    private Optional<UserStoryTestReporter> reportFrom(String key) {
+        String reportClass = environmentVariables.getProperty(key);
+        try {
+            return Optional.of((UserStoryTestReporter) Class.forName(reportClass).newInstance());
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
         }
-        return reports;
+        return Optional.empty();
     }
 
     protected HtmlAggregateStoryReporter getReporter() {

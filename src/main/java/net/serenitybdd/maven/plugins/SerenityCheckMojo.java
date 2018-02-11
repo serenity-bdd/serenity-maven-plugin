@@ -1,6 +1,7 @@
 package net.serenitybdd.maven.plugins;
 
 import net.thucydides.core.guice.Injectors;
+import net.thucydides.core.model.TestResult;
 import net.thucydides.core.reports.ResultChecker;
 import net.thucydides.core.webdriver.Configuration;
 import org.apache.commons.lang3.StringUtils;
@@ -14,6 +15,9 @@ import org.apache.maven.plugins.annotations.ResolutionScope;
 import org.apache.maven.project.MavenProject;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Consumer;
 
 import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 
@@ -59,6 +63,12 @@ public class SerenityCheckMojo extends AbstractMojo {
 
         UpdatedClassLoader.withProjectClassesFrom(project);
 
-        getResultChecker().checkTestResults();
+        TestResult testResult = getResultChecker().checkTestResults();
+
+        switch (testResult) {
+            case ERROR: throw new MojoFailureException("An error occurred in the Serenity tests");
+            case FAILURE: throw new MojoFailureException("A failure occurred in the Serenity tests");
+            case COMPROMISED: throw new MojoFailureException("There were compromised tests in the Serenity test suite");
+        }
     }
 }
