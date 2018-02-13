@@ -44,28 +44,8 @@ public class WhenImportingExternalTestResults {
         assertThat(outputDirectory.list(jsonFiles())).hasSize(5);
     }
 
-    @Test
-    public void source_should_not_be_mandatory() throws MojoFailureException, MojoExecutionException, IOException {
-
-        EnvironmentVariables environmentVariables = new MockEnvironmentVariables();
-        environmentVariables.setProperty("thucydides.adaptors.fileless","net.serenitybdd.maven.plugins.FilelessAdaptor");
-
-        SerenityAdaptorMojo plugin = new SerenityAdaptorMojo(environmentVariables);
-        plugin.setFormat("fileless");
-        plugin.setOutputDirectory(outputDirectory);
-
-        plugin.execute();
-
-        assertThat(outputDirectory.list(jsonFiles())).hasSize(2);
-    }
-
     private FilenameFilter jsonFiles() {
-        return new FilenameFilter() {
-
-            public boolean accept(File file, String filename) {
-                return filename.endsWith(".json") && !filename.startsWith("manifest");
-            }
-        };
+        return (file, filename) -> filename.endsWith(".json") && !filename.startsWith("manifest");
     }
 
     private File getResourcesAt(String path) {
