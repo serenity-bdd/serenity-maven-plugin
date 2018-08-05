@@ -1,12 +1,15 @@
 package net.serenitybdd.maven.plugins;
 
+import com.google.common.base.Splitter;
 import net.serenitybdd.core.Serenity;
 import net.thucydides.core.ThucydidesSystemProperty;
 import net.thucydides.core.guice.Injectors;
+import net.thucydides.core.reports.ExtendedReports;
 import net.thucydides.core.reports.UserStoryTestReporter;
 import net.thucydides.core.reports.html.HtmlAggregateStoryReporter;
 import net.thucydides.core.util.EnvironmentVariables;
 import net.thucydides.core.webdriver.Configuration;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.maven.execution.MavenSession;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -20,10 +23,7 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Locale;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -100,6 +100,9 @@ public class SerenityAggregatorMojo extends AbstractMojo {
     @Parameter
     public boolean generateOutcomes;
 
+    @Parameter(property = "serenity.reports", defaultValue = "")
+    public String reports;
+
     protected void setOutputDirectory(final File outputDirectory) {
         this.outputDirectory = outputDirectory;
         getConfiguration().setOutputDirectory(this.outputDirectory);
@@ -140,7 +143,7 @@ public class SerenityAggregatorMojo extends AbstractMojo {
 
     private EnvironmentVariables getEnvironmentVariables() {
         if (environmentVariables == null) {
-            environmentVariables = Injectors.getInjector().getProvider(EnvironmentVariables.class).get() ;
+            environmentVariables = Injectors.getInjector().getProvider(EnvironmentVariables.class).get();
         }
         return environmentVariables;
     }
@@ -154,14 +157,13 @@ public class SerenityAggregatorMojo extends AbstractMojo {
 
     private void configureEnvironmentVariables() {
         Locale.setDefault(Locale.ENGLISH);
-        updateSystemProperty(ThucydidesSystemProperty.THUCYDIDES_PROJECT_KEY.getPropertyName(), projectKey, Serenity.getDefaultProjectKey());
-        updateSystemProperty(ThucydidesSystemProperty.THUCYDIDES_TEST_REQUIREMENTS_BASEDIR.toString(),
-                             requirementsBaseDir);
+        updateSystemProperty(ThucydidesSystemProperty.SERENITY_PROJECT_KEY.getPropertyName(), projectKey, Serenity.getDefaultProjectKey());
+        updateSystemProperty(ThucydidesSystemProperty.SERENITY_TEST_REQUIREMENTS_BASEDIR.toString(), requirementsBaseDir);
     }
 
     private void updateSystemProperty(String key, String value, String defaultValue) {
         getEnvironmentVariables().setProperty(key,
-                                              Optional.ofNullable(value).orElse(defaultValue));
+                Optional.ofNullable(value).orElse(defaultValue));
     }
 
     private void updateSystemProperty(String key, String value) {
@@ -182,6 +184,7 @@ public class SerenityAggregatorMojo extends AbstractMojo {
 
         try {
             generateHtmlStoryReports();
+            generateExtraReports();
             generateCustomReports();
         } catch (IOException e) {
             throw new MojoExecutionException("Error generating aggregate serenity reports", e);
@@ -191,10 +194,10 @@ public class SerenityAggregatorMojo extends AbstractMojo {
     private void generateCustomReports() throws IOException {
         Collection<UserStoryTestReporter> customReporters = getCustomReportsFor(environmentVariables);
 
-        for(UserStoryTestReporter reporter : customReporters) {
+        for (UserStoryTestReporter reporter : customReporters) {
             reporter.generateReportsForTestResultsFrom(sourceOfTestResult());
         }
-     }
+    }
 
     private Collection<UserStoryTestReporter> getCustomReportsFor(EnvironmentVariables environmentVariables) {
 
@@ -238,6 +241,18 @@ public class SerenityAggregatorMojo extends AbstractMojo {
             getReporter().setGenerateTestOutcomeReports();
         }
         getReporter().generateReportsForTestResultsFrom(sourceDirectory);
+    }
+
+    private void generateExtraReports() {
+
+        if (StringUtils.isEmpty(reports)) {
+            return;
+        }
+        List<String> extendedReportTypes = Splitter.on(",").splitToList(reports);
+        LOGGER.info("ADDITIONAL REPORTS: " + extendedReportTypes);
+        ExtendedReports.named(extendedReportTypes).forEach(
+                report -> report.generateReportFrom(sourceDirectory.toPath())
+        );
     }
 
     private File sourceOfTestResult() {

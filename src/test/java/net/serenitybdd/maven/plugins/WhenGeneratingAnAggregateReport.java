@@ -63,7 +63,7 @@ public class WhenGeneratingAnAggregateReport {
     public void the_requirements_base_dir_can_be_set_via_the_plugin_configuration() throws Exception {
         plugin.requirementsBaseDir = "somedir";
         plugin.execute();
-        assertEquals("somedir", plugin.environmentVariables.getProperty("thucydides.test.requirements.basedir"));
+        assertEquals("somedir", plugin.environmentVariables.getProperty("serenity.test.requirements.basedir"));
     }
 
     @Test
