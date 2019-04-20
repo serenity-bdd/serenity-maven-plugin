@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.serenity-bdd.maven.plugins</groupId>
     <artifactId>serenity-maven-plugin</artifactId>
-    <version>1.9.36-SNAPSHOT</version>
+    <version>2.0.48</version>
     <packaging>maven-plugin</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
