@@ -108,8 +108,6 @@ public class SerenityReportMojo extends AbstractMojo {
         }
         final Path projectDir = session.getCurrentProject().getBasedir().toPath();
 
-        LOGGER.info("current_project.base.dir: " + projectDir.toAbsolutePath().toString());
-
         if (!outputDirectory.isAbsolute()) {
             outputDirectory = projectDir.resolve(outputDirectory.toPath()).toFile();
         }

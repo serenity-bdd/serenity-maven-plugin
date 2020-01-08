@@ -5,6 +5,7 @@ import net.serenitybdd.core.Serenity;
 import net.thucydides.core.ThucydidesSystemProperty;
 import net.thucydides.core.guice.Injectors;
 import net.thucydides.core.reports.ExtendedReports;
+import net.thucydides.core.reports.ResultChecker;
 import net.thucydides.core.reports.UserStoryTestReporter;
 import net.thucydides.core.reports.html.HtmlAggregateStoryReporter;
 import net.thucydides.core.util.EnvironmentVariables;
@@ -131,8 +132,6 @@ public class SerenityAggregatorMojo extends AbstractMojo {
         }
         final Path projectDir = session.getCurrentProject().getBasedir().toPath();
 
-        LOGGER.info("current_project.base.dir: " + projectDir.toAbsolutePath().toString());
-
         if (!outputDirectory.isAbsolute()) {
             outputDirectory = projectDir.resolve(outputDirectory.toPath()).toFile();
         }
@@ -194,7 +193,7 @@ public class SerenityAggregatorMojo extends AbstractMojo {
     private void generateCustomReports() throws IOException {
         Collection<UserStoryTestReporter> customReporters = getCustomReportsFor(environmentVariables);
 
-        for (UserStoryTestReporter reporter : customReporters) {
+         for (UserStoryTestReporter reporter : customReporters) {
             reporter.generateReportsForTestResultsFrom(sourceOfTestResult());
         }
     }
@@ -241,6 +240,7 @@ public class SerenityAggregatorMojo extends AbstractMojo {
             getReporter().setGenerateTestOutcomeReports();
         }
         getReporter().generateReportsForTestResultsFrom(sourceDirectory);
+        new ResultChecker(outputDirectory).checkTestResults();
     }
 
     private void generateExtraReports() {
@@ -249,9 +249,11 @@ public class SerenityAggregatorMojo extends AbstractMojo {
             return;
         }
         List<String> extendedReportTypes = Splitter.on(",").splitToList(reports);
-        LOGGER.info("ADDITIONAL REPORTS: " + extendedReportTypes);
         ExtendedReports.named(extendedReportTypes).forEach(
-                report -> report.generateReportFrom(sourceDirectory.toPath())
+                report -> {
+                    File generatedReport = report.generateReportFrom(sourceDirectory.toPath());
+                    LOGGER.info("  - {}: {}", report.getDescription(), generatedReport.toURI());
+                }
         );
     }
 
