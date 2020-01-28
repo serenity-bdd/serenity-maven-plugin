@@ -251,8 +251,10 @@ public class SerenityAggregatorMojo extends AbstractMojo {
         List<String> extendedReportTypes = Splitter.on(",").splitToList(reports);
         ExtendedReports.named(extendedReportTypes).forEach(
                 report -> {
-                    File generatedReport = report.generateReportFrom(sourceDirectory.toPath());
-                    LOGGER.info("  - {}: {}", report.getDescription(), generatedReport.toURI());
+                    report.setSourceDirectory(sourceDirectory.toPath());
+                    report.setOutputDirectory(outputDirectory.toPath());
+                    Path generatedReport = report.generateReport();
+                    LOGGER.info("  - {}: {}", report.getDescription(), generatedReport.toUri());
                 }
         );
     }

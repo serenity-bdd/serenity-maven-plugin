@@ -79,15 +79,6 @@ public class SerenityReportMojo extends AbstractMojo {
 
     @Parameter(property = "serenity.reports")
     public String reports;
-//
-//    protected void setOutputDirectory(final File outputDirectory) {
-//        this.outputDirectory = outputDirectory;
-//        getConfiguration().setOutputDirectory(this.outputDirectory);
-//    }
-//
-//    protected void setSourceDirectory(final File sourceDirectory) {
-//        this.sourceDirectory = sourceDirectory;
-//    }
 
     public void prepareExecution() throws MojoExecutionException {
         MavenProjectHelper.propagateBuildDir(session);
@@ -100,6 +91,7 @@ public class SerenityReportMojo extends AbstractMojo {
     }
 
     private void configureOutputDirectorySettings() {
+
         if (outputDirectory == null) {
             outputDirectory = getConfiguration().getOutputDirectory();
         }
@@ -111,6 +103,9 @@ public class SerenityReportMojo extends AbstractMojo {
         if (!outputDirectory.isAbsolute()) {
             outputDirectory = projectDir.resolve(outputDirectory.toPath()).toFile();
         }
+
+        LOGGER.info("USING OUTPUT DIR: " + outputDirectory);
+
         if (!sourceDirectory.isAbsolute()) {
             sourceDirectory = projectDir.resolve(sourceDirectory.toPath()).toFile();
         }
@@ -159,9 +154,13 @@ public class SerenityReportMojo extends AbstractMojo {
             return;
         }
         List<String> extendedReportTypes = Splitter.on(",").splitToList(reports);
-        LOGGER.info("ADDITIONAL REPORTS: " + extendedReportTypes);
         ExtendedReports.named(extendedReportTypes).forEach(
-                report -> report.generateReportFrom(sourceDirectory.toPath())
+                report -> {
+                    report.setSourceDirectory(sourceDirectory.toPath());
+                    report.setOutputDirectory(outputDirectory.toPath());
+                    Path generatedReport = report.generateReport();
+                    LOGGER.info("  - " + report.getName() + " generated in " + generatedReport.toUri());
+                }
         );
     }
 
