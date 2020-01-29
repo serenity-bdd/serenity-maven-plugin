@@ -104,8 +104,6 @@ public class SerenityReportMojo extends AbstractMojo {
             outputDirectory = projectDir.resolve(outputDirectory.toPath()).toFile();
         }
 
-        LOGGER.info("USING OUTPUT DIR: " + outputDirectory);
-
         if (!sourceDirectory.isAbsolute()) {
             sourceDirectory = projectDir.resolve(sourceDirectory.toPath()).toFile();
         }
@@ -159,7 +157,6 @@ public class SerenityReportMojo extends AbstractMojo {
                     report.setSourceDirectory(sourceDirectory.toPath());
                     report.setOutputDirectory(outputDirectory.toPath());
                     Path generatedReport = report.generateReport();
-                    LOGGER.info("  - " + report.getName() + " generated in " + generatedReport.toUri());
                 }
         );
     }
