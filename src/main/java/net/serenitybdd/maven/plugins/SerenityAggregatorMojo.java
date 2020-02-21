@@ -104,6 +104,9 @@ public class SerenityAggregatorMojo extends AbstractMojo {
     @Parameter(property = "serenity.reports")
     public String reports;
 
+    @Parameter
+    public Map<String, String> systemPropertyVariables;
+
     protected void setOutputDirectory(final File outputDirectory) {
         this.outputDirectory = outputDirectory;
         getConfiguration().setOutputDirectory(this.outputDirectory);
@@ -158,6 +161,11 @@ public class SerenityAggregatorMojo extends AbstractMojo {
         Locale.setDefault(Locale.ENGLISH);
         updateSystemProperty(ThucydidesSystemProperty.SERENITY_PROJECT_KEY.getPropertyName(), projectKey, Serenity.getDefaultProjectKey());
         updateSystemProperty(ThucydidesSystemProperty.SERENITY_TEST_REQUIREMENTS_BASEDIR.toString(), requirementsBaseDir);
+        if (systemPropertyVariables != null) {
+            systemPropertyVariables.forEach(
+                    (key, value) -> updateSystemProperty(key,value)
+            );
+        }
     }
 
     private void updateSystemProperty(String key, String value, String defaultValue) {
