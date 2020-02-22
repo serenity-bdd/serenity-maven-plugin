@@ -117,12 +117,12 @@ public class SerenityAggregatorMojo extends AbstractMojo {
     }
 
     public void prepareExecution() throws MojoExecutionException {
+        configureEnvironmentVariables();
         MavenProjectHelper.propagateBuildDir(session);
         configureOutputDirectorySettings();
         if (!outputDirectory.exists()) {
             outputDirectory.mkdirs();
         }
-        configureEnvironmentVariables();
         UpdatedClassLoader.withProjectClassesFrom(project);
     }
 
@@ -159,13 +159,13 @@ public class SerenityAggregatorMojo extends AbstractMojo {
 
     private void configureEnvironmentVariables() {
         Locale.setDefault(Locale.ENGLISH);
-        updateSystemProperty(ThucydidesSystemProperty.SERENITY_PROJECT_KEY.getPropertyName(), projectKey, Serenity.getDefaultProjectKey());
-        updateSystemProperty(ThucydidesSystemProperty.SERENITY_TEST_REQUIREMENTS_BASEDIR.toString(), requirementsBaseDir);
         if (systemPropertyVariables != null) {
             systemPropertyVariables.forEach(
-                    (key, value) -> updateSystemProperty(key,value)
+                    System::setProperty
             );
         }
+        updateSystemProperty(ThucydidesSystemProperty.SERENITY_PROJECT_KEY.getPropertyName(), projectKey, Serenity.getDefaultProjectKey());
+        updateSystemProperty(ThucydidesSystemProperty.SERENITY_TEST_REQUIREMENTS_BASEDIR.toString(), requirementsBaseDir);
     }
 
     private void updateSystemProperty(String key, String value, String defaultValue) {
