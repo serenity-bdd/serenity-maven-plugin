@@ -23,12 +23,12 @@
                 <repository>
                     <id>serenity</id>
                     <name>serenity</name>
-                    <url>http://dl.bintray.com/serenity/maven</url>
+                    <url>https://dl.bintray.com/serenity/maven</url>
                 </repository>
                 <repository>
                     <id>central</id>
                     <name>bintray</name>
-                    <url>http://dl.bintray.com/serenity/maven</url>
+                    <url>https://dl.bintray.com/serenity/maven</url>
                 </repository>
             </repositories>
             <pluginRepositories>
@@ -44,7 +44,7 @@
                 <pluginRepository>
                     <id>serenity</id>
                     <name>serenity-plugins</name>
-                    <url>http://dl.bintray.com/serenity/maven</url>
+                    <url>https://dl.bintray.com/serenity/maven</url>
                 </pluginRepository>
             </pluginRepositories>
             <id>bintray</id>
