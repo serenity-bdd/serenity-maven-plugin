@@ -39,10 +39,9 @@
     </developers>
 
     <scm>
-        <connection>scm:git:https://github.com/serenity-bdd/maven-serenity-plugin.git</connection>
-        <developerConnection>scm:git:git@github.com:serenity-bdd/maven-serenity-plugin.git</developerConnection>
+        <connection>scm:git:https://github.com/serenity-bdd/serenity-maven-plugin.git</connection>
+        <developerConnection>scm:git:https://github.com/serenity-bdd/serenity-maven-plugin.git</developerConnection>
         <url>https://github.com/serenity-bdd/maven-serenity-plugin</url>
-        <tag>serenity-maven-plugin-2.1.1</tag>
     </scm>
 
     <build>
