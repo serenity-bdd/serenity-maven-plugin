@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
 /**
  * Generate aggregate XML acceptance test reports.
  */
-@Mojo(name = "aggregate", requiresProject = false, requiresDependencyResolution = ResolutionScope.RUNTIME)
+@Mojo(name = "aggregate", requiresProject = false, requiresDependencyResolution = ResolutionScope.RUNTIME, aggregator = true)
 public class SerenityAggregatorMojo extends AbstractMojo {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(SerenityAggregatorMojo.class);
