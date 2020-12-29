@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.serenity-bdd.maven.plugins</groupId>
     <artifactId>serenity-maven-plugin</artifactId>
-    <version>2.3.10</version>
+    <version>2.3.11-SNAPSHOT</version>
     <packaging>maven-plugin</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -42,7 +42,7 @@
         <connection>scm:git:https://github.com/serenity-bdd/serenity-maven-plugin.git</connection>
         <developerConnection>scm:git:https://github.com/serenity-bdd/serenity-maven-plugin.git</developerConnection>
         <url>https://github.com/serenity-bdd/maven-serenity-plugin</url>
-      <tag>serenity-maven-plugin-2.3.10</tag>
+      <tag>serenity-maven-plugin-2.2.1</tag>
   </scm>
 
     <build>
